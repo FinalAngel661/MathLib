@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MathLib", "MathLib\MathLib.vcxproj", "{0E657158-4641-422F-B009-E569A77ED089}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Math test", "Math test\Math test.vcxproj", "{4E5CD315-F2D3-4AB7-81B1-6DFF59051D0A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{0E657158-4641-422F-B009-E569A77ED089}.Release|x64.Build.0 = Release|x64
 		{0E657158-4641-422F-B009-E569A77ED089}.Release|x86.ActiveCfg = Release|Win32
 		{0E657158-4641-422F-B009-E569A77ED089}.Release|x86.Build.0 = Release|Win32
+		{4E5CD315-F2D3-4AB7-81B1-6DFF59051D0A}.Debug|x64.ActiveCfg = Debug|x64
+		{4E5CD315-F2D3-4AB7-81B1-6DFF59051D0A}.Debug|x64.Build.0 = Debug|x64
+		{4E5CD315-F2D3-4AB7-81B1-6DFF59051D0A}.Debug|x86.ActiveCfg = Debug|Win32
+		{4E5CD315-F2D3-4AB7-81B1-6DFF59051D0A}.Debug|x86.Build.0 = Debug|Win32
+		{4E5CD315-F2D3-4AB7-81B1-6DFF59051D0A}.Release|x64.ActiveCfg = Release|x64
+		{4E5CD315-F2D3-4AB7-81B1-6DFF59051D0A}.Release|x64.Build.0 = Release|x64
+		{4E5CD315-F2D3-4AB7-81B1-6DFF59051D0A}.Release|x86.ActiveCfg = Release|Win32
+		{4E5CD315-F2D3-4AB7-81B1-6DFF59051D0A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
