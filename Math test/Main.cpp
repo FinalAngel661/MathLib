@@ -19,6 +19,11 @@ int main()
 	assert(quadfunc(-1) == -8);
 	assert(quadfunc(1) ==  -4);
 
+	//Vector tests
+	assert((vec2{ 0,0 } == vec2{ 0,0 }));
+	assert((vec2{ 1,0 } == vec2{ 1,0 }));
+
+	assert((vec2{ 1,1 } + vec2{-1,0} == vec2))
 	//quad(1, 0, 0);
 	//assert(res.roots == 1);
 	//assert(res.roots == 2);
