@@ -43,6 +43,9 @@ float angleBetween(const vec2 &rhs,const vec2 &lhs);
 vec2 perp(const vec2 &v);
 vec2 angle(const vec2 &v);
 
+//vec2{cos(a), sin(a)};
+vec2 fromAngle(float a);
+
 
 //component-wise
 //addition

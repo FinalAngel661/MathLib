@@ -11,3 +11,13 @@ bool fequels(float lhs, float rhs)
 
 	return false;
 }
+
+float deg2rad(float deg)
+{
+	return 0.0f;
+}
+
+float rad2deg(float rad)
+{
+	return 0.0f;
+}

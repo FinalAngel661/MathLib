@@ -44,6 +44,10 @@ vec2 angle(const vec2 & v)
 {
 	return vec2();
 }
+vec2 fromAngle(float a)
+{
+	return vec2();
+}
 vec2 operator-(const vec2 & v)
 {
 	return vec2();

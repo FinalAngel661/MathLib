@@ -5,6 +5,7 @@
 #include "Vec2.h"
 #include "fops.h"
 #include "fops.cpp"
+#include "Vec3.h"
 
 //This is the develop branch
 //jfjf
@@ -40,6 +41,21 @@ int main()
 
 	assert(fequals(1, .9999999f));
 
+	
+
+
+	vec2 N = normal(vec2{ 1,1 });
+	assert(fequals(magnitude(N), 1));
+	assert(fequals(dot(vec2{ 5,4 }, vec2{ 0,1 }), 4));
+	assert(fequals(dot(vec2{ 5,4 }, vec2{ 1,0 }), 5));
+
+	assert(fequals(angleBetween(vec2{ 0,1 }, vec2{ 0,1 }), deg2rad(45)));
+
+	assert((fromAngle(0) == vec2{ 1,0 }));
+	assert((fromAngle(deg2rad(90)) == vec2{ 0,1 }));
+
+	assert((cross(vec3{ 1,0,0 }, vec3{ 0,1,0 }) == vec3{ 0,0,1 }));
+
 	return 0;
 
 	//quad(1, 0, 0);
@@ -50,7 +66,7 @@ int main()
 	/*assert(quad(1, -2, 0).leftRoot == 0);
 	assert(quad(1,-2,0).rightRoot == 2);
 
-	assert(quad(1, 0, 0).leftRoot == quad(1, 0, 0).rightRoot)*/
+	assert(quad(1, 0, 0).leftRoot == quad(1, 0, 0).rightRoot);*/
 
 	float lerp(float start, float end, float t)
 	{

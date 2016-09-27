@@ -28,6 +28,16 @@ vec3 operator/=(vec3 &lhs, const vec3 &rhs);
 
 vec3 normal(const vec3 &v);
 
+
+
+
+
+float dot(const vec2 &lhs, const vec2 &rhs);
+
+float angleBetween(const vec2 &lhs, const vec2 &rhs);
+
+vec3 cross(const vec3 &lhs, const vec3 &rhs);
+
 //component-wise
 //addition
 //subtraction
