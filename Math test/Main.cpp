@@ -2,7 +2,9 @@
 #include <cstdio>
 
 #include "Test.h"
-
+#include "Vec2.h"
+#include "fops.h"
+#include "fops.cpp"
 
 //This is the develop branch
 //jfjf
@@ -23,7 +25,23 @@ int main()
 	assert((vec2{ 0,0 } == vec2{ 0,0 }));
 	assert((vec2{ 1,0 } == vec2{ 1,0 }));
 
-	assert((vec2{ 1,1 } + vec2{-1,0} == vec2))
+	assert((vec2{ 1,1 } +vec2{ -1,0 } == vec2));
+
+	vec2 var = { 4,0 };
+	var += vec2{ -3,1 };
+	assert((var == vec2{ 1,1 }));
+
+	vec2 N = normal(vec2{ 1,1 });
+	assert(N.x == N.y);
+
+	assert(magnitude(N) == 1);
+	assert(normal(N) == N);
+	assert((normal(vec2{ 0,1 }) == vec2{ 0,1 }));
+
+	assert(fequals(1, .9999999f));
+
+	return 0;
+
 	//quad(1, 0, 0);
 	//assert(res.roots == 1);
 	//assert(res.roots == 2);
@@ -48,3 +66,4 @@ int main()
 	getchar();
 	return 0;
 }
+

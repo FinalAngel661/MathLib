@@ -26,6 +26,24 @@ vec2 operator-=(vec2 &lhs, const vec2 &rhs);
 vec2 operator*=(vec2 &lhs, const vec2 &rhs);
 vec2 operator/=(vec2 &lhs, const vec2 &rhs);
 
+vec2 normal(const vec2 &v);
+
+
+float dot(const vec2 &rhs, const vec2 &lhs);
+float angleBetween(const vec2 &rhs,const vec2 &lhs);
+
+///////////////////////////////////////////////////////
+////3D Cross Product vec3 cross(const vec3 &lhs, const vec3 &rhs);
+
+
+
+///////////////////
+////2D game only
+
+vec2 perp(const vec2 &v);
+vec2 angle(const vec2 &v);
+
+
 //component-wise
 //addition
 //subtraction
