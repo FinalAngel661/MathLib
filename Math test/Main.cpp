@@ -12,78 +12,41 @@
 
 int main()
 {
+	assert(fequals(0, 0.000001));
+	//////////////////////////////////////
+	// Vector Tests
 
-	//Unit Tests
-	assert(donothing(0) == 5);
-	assert(donothing(-1) == 4);
-	assert(donothing(1) == 8);
+	// if the vector only extends in one axis, then it's
+	// magnitude will be the extent within that axis!
+	assert(fequals(magnitude(vec2{ 5,0 }), 5));
 
-	assert(quadfunc(0) == -7);
-	assert(quadfunc(-1) == -8);
-	assert(quadfunc(1) ==  -4);
-
-	//Vector tests
-	assert((vec2{ 0,0 } == vec2{ 0,0 }));
-	assert((vec2{ 1,0 } == vec2{ 1,0 }));
-
-	assert((vec2{ 1,1 } +vec2{ -1,0 } == vec2));
-
-	vec2 var = { 4,0 };
-	var += vec2{ -3,1 };
-	assert((var == vec2{ 1,1 }));
-
-	vec2 N = normal(vec2{ 1,1 });
-	assert(N.x == N.y);
-
-	assert(magnitude(N) == 1);
-	assert(normal(N) == N);
-	assert((normal(vec2{ 0,1 }) == vec2{ 0,1 }));
-
-	assert(fequals(1, .9999999f));
-
-	
-
-
+	// magnitude of the normal should be 1
 	vec2 N = normal(vec2{ 1,1 });
 	assert(fequals(magnitude(N), 1));
-	assert(fequals(dot(vec2{ 5,4 }, vec2{ 0,1 }), 4));
+
+	// Dot product with an AXIS should give us the coordinate value
+	// along that axis.
 	assert(fequals(dot(vec2{ 5,4 }, vec2{ 1,0 }), 5));
+	assert(fequals(dot(vec2{ 5,4 }, vec2{ 0,1 }), 4));
 
-	assert(fequals(angleBetween(vec2{ 0,1 }, vec2{ 0,1 }), deg2rad(45)));
+	// Anglebetween the X-Axis should give us the angle of the vector.
+	assert(fequals(angleBetween(vec2{ 0,1 }, vec2{ 1,0 }), deg2rad(90)));
+	assert(fequals(angleBetween(vec2{ 1,1 }, vec2{ 0,1 }), deg2rad(45)));
+	assert(fequals(angleBetween(vec2{ 1,1 }, vec2{ 0,1 }), angle(vec2{ 1,1 })));
 
-
-	assert(fequasls(angleBetween(vec2{ 1,1 }, vec2{ 0,1 }), facing(vec2{ 1,1 })));
-
+	// Angle of 0 should be the X-Axis
 	assert((fromAngle(0) == vec2{ 1,0 }));
 	assert((fromAngle(deg2rad(90)) == vec2{ 0,1 }));
+	assert((fromAngle(deg2rad(45))) == normal(vec2{ 1,1 }));
 
-	assert((cross(vec3{ 1,0,0 }, vec3{ 0,1,0 }) == vec3{ 0,0,1 }));
-	assert((cross(vec3{ 1,0,0 }, vec3{ 0,1,0 }) == vec3{ 0,0,-1 }));
+	//Testing cross product
+	//Ensure that the Z-axis results from
+	//crossing the X-axis and Y-Axis
+	//	assert((cross(vec3{ 1,0,0 }, vec3{ 0,1,0 }) == vec3{0,0,1}));
 
-	return 0;
-
-	//quad(1, 0, 0);
-	//assert(res.roots == 1);
-	//assert(res.roots == 2);
-	//assert(res.roots == 0);
-
-	/*assert(quad(1, -2, 0).leftRoot == 0);
-	assert(quad(1,-2,0).rightRoot == 2);
-
-	assert(quad(1, 0, 0).leftRoot == quad(1, 0, 0).rightRoot);*/
-
-	float lerp(float start, float end, float t)
-	{
-		return start + t * (end - start);
-	}
-
-//	distance formaula:
-	float distance(float x1, float y1, float x2, float y2)
-	{
-		return sqrt((x2 - x1)*(x2 - x1) + (y2 - y1)*(y2 - y1));
-	}
-
-	getchar();
+	// reversing the operands will give me the back-facing vector.
+	//	assert( (cross(vec3{ 0,1,0 }, vec3{ 1,0,0 }) == vec3{ 0,0,-1 }) );
 	return 0;
 }
+
 

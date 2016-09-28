@@ -1,5 +1,24 @@
 #include "Transform.h"
 #include "sfwdraw.h"
+#include "Vec2.h"
+#include "fops.h"
+
+Transform::Transform() : facing(0), position({ 0,0 }), scale({28,8}) // member initialization!
+{
+	position.x = 0;
+	position.y = 0;
+
+	scale.x = 28;
+	scale.y = 8;
+
+	facing = 0;
+}
+
+Transform::Transform(float x, float y) : Transform() // ctor chaining!
+{
+	position.x = x;
+	position.y = y;
+}
 
 vec2 Transform::getDirection()
 {

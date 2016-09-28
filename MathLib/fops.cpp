@@ -2,22 +2,21 @@
 #include <cmath>
 #include <cfloat>
 
-bool fequels(float lhs, float rhs)
+// FLT_EPSILON in <cfloat> is an okay threshold.
+// float equivalence
+// We want to see if two floats are negligbly close
+// enough to be considered the same.
+bool fequals(float lhs, float rhs)
 {
-	fabsf(lhs - rhs) <= 0.000001f;
-
-	FLT_EPSILON;
-	0.0000001f;
-
-	return false;
+	return fabsf(lhs - rhs) <= 0.00001f;
 }
 
 float deg2rad(float deg)
 {
-	return 0.0f;
+	return 0.0174533 * deg;
 }
 
 float rad2deg(float rad)
 {
-	return 0.0f;
+	return 57.2958 * rad;
 }

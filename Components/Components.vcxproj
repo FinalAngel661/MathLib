@@ -77,7 +77,7 @@
       <AdditionalIncludeDirectories>C:\Users\kelsey.davis\Documents\Visual Studio 2015\Projects\MathLib\MathLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>MathLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>MathLib.lib;sfw.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Users\kelsey.davis\Documents\Visual Studio 2015\Projects\MathLib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>

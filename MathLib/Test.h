@@ -2,51 +2,42 @@
 #include <cmath>
 
 
-int donothing(int x);
+int doNothing(int x);
 
-//prob A:
-float quadfunc(float x);
+// Problem a:
+float test_quad(float x);
 
-//prob B:
+//Problem b:
 
-float quad(float a, float b, float c);
-float quad_p(float a, float b, float c);
-float quad_m(float a, float b, float c);
+// Note: Create structures whenever you feel they'll help!
+struct quad_results
+{
+	float left_root, right_root;
+	int roots; //0, 1, 2
+};
 
-//Prob C:
+quad_results quad(float a, float b, float c);
+
+
+// problem b.
 float lerp(float start, float end, float t);
 
+// problem c.
+struct Point { float x, y; };
+float distance(const Point &P1, const Point &P2);
 
-//Prob D:
-struct Point
-{
-	float x, y;
+// problem d.
+struct Point3D { float x, y, z; };
+float inner(const Point3D &P1, const Point3D &P2);
 
-};
-float distance(Point P1, Point P2);
-float distance(float x1,float y1, float x2, float y2);
+struct Plane { Point3D abc; float d; };
+float point_plane_distance(const Plane &pl, const Point3D &pt);
 
+Point3D bezier(float t, const Point3D &p1, const Point3D &p2,
+	const Point3D &p3, const Point3D &p4);
 
-//Prob E:
-struct Point3D { float x,y,z; };
-float distance(Point P1, Point P2);
-float distance(float x1, float y1, float z1, float x2, float y2, float z2);
+// problem e.
+// Point-Plane Distance....
 
-// other fuctions..
-
-//quadResults quad1(float a, float b, float c)
-//{
-//
-//
-//
-//};
-
-//struct Plane {Point3D abc};
-
-Point3D bezier(float t, const Point3D &p1, const Point3D & p2, const Point3D &p3, const Point3D &p4)
-{
-	float ot = 1 - t;
-	ot*ot*ot*p1.y + 3 * ot*ot*t*p2.x + 3 * ot*t*t*p3.x + t*t*t*p3.x;
-
-
-}
+// problem f.
+// Bezier Curve....
