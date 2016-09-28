@@ -3,22 +3,22 @@
 #include "Vec2.h"
 #include "fops.h"
 
-Transform::Transform() : facing(0), position({ 0,0 }), scale({28,8}) // member initialization!
+Transform::Transform(float x = 0, float y = 0, float w = 1, float h = 1, float a = 0) : facing(a), position({ x,y }), scale({w,h}) // member initialization!
 {
-	position.x = 0;
-	position.y = 0;
+	//position.x = 0;
+	//position.y = 0;
 
-	scale.x = 28;
-	scale.y = 8;
+	//scale.x = 28;
+	//scale.y = 8;
 
-	facing = 0;
+	//facing = 0;
 }
 
-Transform::Transform(float x, float y) : Transform() // ctor chaining!
-{
-	position.x = x;
-	position.y = y;
-}
+//Transform::Transform(float x = 0, float y = 0, float w = 1, float h = 1, float a = 0) : Transform() // ctor chaining!
+//{
+//	position.x = x;
+//	position.y = y;
+//}
 
 vec2 Transform::getDirection()
 {
