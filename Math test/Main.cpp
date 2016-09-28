@@ -52,7 +52,7 @@ int main()
 	assert(fequals(angleBetween(vec2{ 0,1 }, vec2{ 0,1 }), deg2rad(45)));
 
 
-	assert(fequasls(angleBetween(vec2{ 1,1 }, vec2{ 0,1 }), angle(vec2{ 1,1 })));
+	assert(fequasls(angleBetween(vec2{ 1,1 }, vec2{ 0,1 }), facing(vec2{ 1,1 })));
 
 	assert((fromAngle(0) == vec2{ 1,0 }));
 	assert((fromAngle(deg2rad(90)) == vec2{ 0,1 }));

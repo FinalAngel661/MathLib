@@ -41,7 +41,7 @@ float angleBetween(const vec2 &rhs,const vec2 &lhs);
 ////2D game only
 
 vec2 perp(const vec2 &v);
-vec2 angle(const vec2 &v);
+vec2 facing(const vec2 &v);
 
 //vec2{cos(a), sin(a)};
 vec2 fromAngle(float a);

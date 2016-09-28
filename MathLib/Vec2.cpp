@@ -40,7 +40,7 @@ vec2 perp(const vec2 & v)
 {
 	return vec2();
 }
-vec2 angle(const vec2 & v)
+vec2 facing(const vec2 & v)
 {
 	return vec2();
 }
