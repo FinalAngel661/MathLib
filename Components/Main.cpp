@@ -14,6 +14,7 @@ void main()
 
 	while (sfw::stepContext())
 	{
+		trans.facing += sfw::getDeltaTime();
 		trans.debugDraw();
 
 
