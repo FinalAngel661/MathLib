@@ -15,3 +15,4 @@ float bounce(float x);
 float bounceflip(float x);
 float parabola(float x);
 float parabflip(float x);
+float parabola1(float x1, float x2, float x);

@@ -59,9 +59,14 @@ float parabola(float x)
 	return -(x - .5) * 2 + 1;
 }
 
+float parabola1(float x1, float x2,float x)
+{
+	return x1*2+x2+x;
+}
+
 float parabflip(float x)
 {
-	return 1 - parabola(x);
+	return 1 - (2*x-1)*(2*x-1);
 }
 
 
