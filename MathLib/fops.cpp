@@ -1,6 +1,7 @@
 #include "fops.h"
 #include <cmath>
 #include <cfloat>
+#include "Vec2.h"
 
 // FLT_EPSILON in <cfloat> is an okay threshold.
 // float equivalence
@@ -68,6 +69,67 @@ float parabflip(float x)
 {
 	return 1 - (2*x-1)*(2*x-1);
 }
+
+float lerp(float start, float end, float alpha)
+{
+	//avoids some issues with floating point errors!
+	return (1 - alpha)*start + (alpha)*end;
+
+	//slope intercept form,where alpha is x
+	//y=m*x+b
+	//return alpha*(end - start) + start;
+
+}
+
+float QuadBezier(float start, float mid, float end, float alpha)
+{
+	return lerp(lerp(start, mid, alpha), lerp(mid,end,alpha),alpha);
+}
+
+float hermitSpline(float start, float s_tan, float end, float e_tan, float alpha)
+{
+	float tsq = alpha*alpha;
+	float tcub = tsq*alpha;
+
+	float h00 = 2 * tcub - 3 * tsq + 1;
+	float h01 = -2 * tcub + 3 * tsq;
+	float h10 = tcub - 2 * tsq + alpha;
+	float h11 = tcub - tsq;
+
+	return h00*start+h10*s_tan + h01*end+h11*e_tan;
+}
+
+float cardinalSpline(float start, float mid, float end, float tightness,float alpha)
+{
+	float s_tan = (mid - start) * tightness, e_tan = (end - mid)*tightness;
+	return hermitSpline(start,s_tan,end,e_tan,alpha);
+}
+
+float catRomPline(float start, float mid, float end,float alpha)
+{
+	return cardinalSpline(start, mid, end, 0.5f, alpha);
+}
+
+
+//
+//vec2 lerpp(vec2 a_A, vec2 a_B, float a_t)
+//{
+//
+//
+//}
+//
+//vec2 QuadBezier(vec2 a_A, vec2 a_B, vec2 a_C, float a_t)
+//{
+//	vec2 mid1 = lerpp(a_A, a_B, a_t);
+//
+//}
+//
+//vec2 CardinalSpline(vec2 point0, vec2 point1,vec2 point2,float a,float b)
+//{
+//	//vec2 tangent0 =
+//
+//}
+
 
 
 /*
