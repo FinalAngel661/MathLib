@@ -48,3 +48,17 @@ vec2 fromAngle(float a);
 //{
 //	return vec2{cos(a), sin(a)};
 //}
+
+
+vec2 lerp(const vec2 start, const vec2 end, float alpha);
+
+
+vec2 QuadBezier(const vec2 start, const vec2 mid, const vec2 end, float alpha);
+
+
+vec2 hermitSpline(const vec2 start, const vec2 s_tan, const vec2 end, const vec2 e_tan, float alpha);
+
+vec2 cardinalSpline(const vec2 start, const vec2 mid, const vec2 end, const vec2 tightness, float alpha);
+
+vec2 catRomPline(const vec2 start, const vec2 mid, const vec2 end, float alpha);
+

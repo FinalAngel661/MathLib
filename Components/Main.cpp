@@ -83,7 +83,7 @@ void main()
 			float y1 = hermitSpline(.25f, -.1f, .75f, 1, x1);
 			float y2 = hermitSpline(.25f, -.1f, .75f, 1, x2);
 
-
+			
 
 			x1 *= W;
 			x2 *= H;
