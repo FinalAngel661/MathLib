@@ -5,7 +5,7 @@
 
 void main()
 {
-	sfw::initContext();
+	sfw::initContext(1200,1200);
 	Transform trans(400, 300,30,30,23);
 
 	//different constructor syntaxes:
@@ -34,6 +34,39 @@ void main()
 
 		//Draw the data!
 		//sfw::drawLine();
+
+		while (sfw::stepContext())
+		{
+			float steps = 100;
+			for (int i = 0; i < steps; ++i)
+			{
+				float x1 = i / steps;
+				float x2 = (i + 1) / steps;
+				float y1 = parabola(x1);
+				float y2 = parabflip(x2);
+				
+
+				
+					x1 *= 1200;
+					x2 *= 1200;
+					y1 *= 1200;
+					y2 *= 1200;
+				
+				/*
+					int point;
+
+					sfw::drawCircle();
+				
+				
+				*/
+
+					
+				sfw::drawLine(x1, y1, x2, y2);
+			}
+
+		}
+
+
 
 		trans.facing += sfw::getDeltaTime();
 		trans.debugDraw();

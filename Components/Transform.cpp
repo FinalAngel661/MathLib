@@ -3,6 +3,10 @@
 #include "Vec2.h"
 #include "fops.h"
 
+Transform::Transform(float x, float y)
+{
+}
+
 Transform::Transform(float x = 0, float y = 0, float w = 1, float h = 1, float a = 0) : facing(a), position({ x,y }), scale({w,h}) // member initialization!
 {
 	//position.x = 0;
@@ -41,3 +45,10 @@ void Transform::debugDraw()
 	sfw::drawLine(position.x, position.y, dirEnd.x, dirEnd.y, GREEN);
 
 }
+
+void Transform::update()
+{
+}
+
+
+
