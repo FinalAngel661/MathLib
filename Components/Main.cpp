@@ -2,6 +2,7 @@
 #include "vec2.h"
 #include "Transform.h"
 #include "fops.h"
+#include "rigidbody.h"
 
 void main()
 {
@@ -27,56 +28,17 @@ void main()
 	vec2 basis = { 10,0 };
 	float ang_vec = 0;
 
-	//while (sfw::stepContext())
-	//{
-	//	ang_vec += sfw::getDeltaTime();
-	//	vec2 incident = fromAngle(ang_vec);
-	//	float proj = dot(basis, incident);
-
-	//	//Draw the data!
-	//	//sfw::drawLine();
-
-	//	while (sfw::stepContext())
-	//	{
-	//		float steps = 100;
-	//		for (int i = 0; i < steps; ++i)
-	//		{
-	//			float x1 = i / steps;
-	//			float x2 = (i + 1) / steps;
-	//			float y1 = QuadBezier(200,300,1,x1);
-	//			float y2 = QuadBezier(200,300,0, x2);
-	//			
-
-	//			
-	//				x1 *= 1200;
-	//				x2 *= 1200;
-	//				y1 *= 1200;
-	//				y2 *= 1200;
-	//			
-	//			/*
-	//				int point;
-
-	//				sfw::drawCircle();
-	//			
-	//			
-	//			*/
-
-	//				
-	//			sfw::drawLine(x1, y1, x2, y2);
-	//		}
-
-	//	}
-
-
-
-	//	trans.facing += sfw::getDeltaTime();
-	//	trans.debugDraw();
-	//}
-
 	vec2 start = { 200,300 }, end = { 900,800 }, mid = { 0,1100 };
+
+	//playerRigidbody.velocity = vec2{ 0,0 };
+
+	//Transform playerTransform(200,200);
+	//Rigidbody playerRigidbody;
 
 	while (sfw::stepContext())
 	{
+		/*playerTransform.debugDraw();*/
+
 		sfw::drawCircle(start.x, start.y, 12);
 		sfw::drawCircle(mid.x, mid.y, 12);
 		sfw::drawCircle(end.x, end.y, 12);
