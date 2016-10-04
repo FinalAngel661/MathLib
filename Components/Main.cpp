@@ -92,7 +92,11 @@ void main()
 			float y1 = hermitSpline(.25f, -.1f, .75f, 1, x1);
 			float y2 = hermitSpline(.25f, -.1f, .75f, 1, x2);
 
+			float t1 = i / steps;
+			float t2 = (i + 1) / steps;
 			
+			vec2 v1 = QuadBezier(start, mid, end, t1);
+			vec2 v2 = QuadBezier(start, mid, end, t2);
 
 			x1 *= W;
 			x2 *= H;
@@ -107,7 +111,7 @@ void main()
 
 			*/
 
-
+			sfw::drawLine(v1.x,v1.y,v2.x,v2.y);
 			sfw::drawLine(x1, y1, x2, y2);
 		}
 
