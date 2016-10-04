@@ -26,3 +26,4 @@ float QuadBezier(float start, float mid, float end, float alpha);
 float hermitSpline(float start, float s_tan, float end, float e_tan, float alpha);
 float cardinalSpline(float start, float mid, float end, float tightness);
 float catRomPline(float start, float mid, float end);
+float cubicBezier(float start, float mid1, float mid2, float end, float alpha);

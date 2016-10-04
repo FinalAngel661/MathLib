@@ -99,6 +99,11 @@ float hermitSpline(float start, float s_tan, float end, float e_tan, float alpha
 	return h00*start+h10*s_tan + h01*end+h11*e_tan;
 }
 
+float cubicBezier(float start, float mid1, float mid2, float end, float alpha)
+{
+	return 0.0f;
+}
+
 float cardinalSpline(float start, float mid, float end, float tightness,float alpha)
 {
 	float s_tan = (mid - start) * tightness, e_tan = (end - mid)*tightness;
