@@ -108,7 +108,10 @@ vec2 lerp(const vec2 &start, const vec2 &end, float alpha)
 
 vec2 QuadBezier(const vec2 start, const vec2 mid, const vec2 end, float alpha)
 {
-	return vec2();
+	vec2 retval;
+	retval.x = QuadBezier(start.x, mid.x, end.x, alpha);
+	retval.y = QuadBezier(start.y, mid.y, end.y, alpha);
+	return retval;
 }
 
 vec2 hermitSpline(const vec2 start, const vec2 s_tan, const vec2 end, const vec2 e_tan, float alpha)
