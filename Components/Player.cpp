@@ -25,18 +25,23 @@ void Player::takeDamage(int dmg)
 
 void Player::drawPlayer()
 {
+	playerTransform.scale = { 5,5 };
+
 	//Player
 	sfw::drawCircle(player.x, player.y, 5.f);
-	if (sfw::getKey('W')) playerVelocity.y += 100.0f;
-	if (sfw::getKey('S')) playerVelocity.y -= 100.0f;
-	if (sfw::getKey('A')) playerVelocity.x -= 100.0f;
-	if (sfw::getKey('D')) playerVelocity.x += 100.0f;
+	if (sfw::getKey('W')) playerRigidbody.accel.y += 100.0f;
+	if (sfw::getKey('S')) playerRigidbody.accel.y -= 100.0f;
+	if (sfw::getKey('A')) playerRigidbody.accel.x -= 100.0f;
+	if (sfw::getKey('D')) playerRigidbody.accel.x += 100.0f;
+
+	if (sfw::getKey('Q')) playerRigidbody.angularVelocity += 1.0f;
+	if (sfw::getKey('E')) playerRigidbody.angularVelocity -= 1.0f;
 
 	//Intergration
 	player = player + playerVelocity * sfw::getDeltaTime();
 
 	//Wrap
-	if (player.x < 0) player.x = W;
+	if (playerTransform.position.x < W) playerTransform;
 	else if (player.x > W) player.x = 0;
 	if (player.y < 0) player.y = H;
 	else if (player.y > H) player.y = 0;
@@ -44,13 +49,4 @@ void Player::drawPlayer()
 	playerRigidbody.intergrate(playerTransform, 5.f);
 	playerTransform.debugDraw();
 
-}
-
-void Player::accel(int acc)
-{
-	playerRigidbody.velocity = vec2{ 0,0 };
-}
-
-void Player::rotate(int rot)
-{
 }

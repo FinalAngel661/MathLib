@@ -10,6 +10,4 @@ public:
 	void health(const int);
 	void takeDamage(int dmg);
 	void drawPlayer();
-	void accel(int acc);
-	void rotate(int rot);
 };

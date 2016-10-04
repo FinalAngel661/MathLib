@@ -3,6 +3,7 @@
 #include "Transform.h"
 #include "fops.h"
 #include "rigidbody.h"
+#include "SpaceshipLocomotion.h"
 
 void main()
 {
@@ -34,6 +35,8 @@ void main()
 
 	//Transform playerTransform(200,200);
 	//Rigidbody playerRigidbody;
+
+	SpaceshipLocomation playerLoco;
 
 	while (sfw::stepContext())
 	{
