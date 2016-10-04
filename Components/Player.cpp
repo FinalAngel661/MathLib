@@ -31,8 +31,8 @@ void Player::drawPlayer()
 	sfw::drawCircle(player.x, player.y, 5.f);
 	if (sfw::getKey('W')) playerRigidbody.accel.y += 100.0f;
 	if (sfw::getKey('S')) playerRigidbody.accel.y -= 100.0f;
-	if (sfw::getKey('A')) playerRigidbody.accel.x -= 100.0f;
-	if (sfw::getKey('D')) playerRigidbody.accel.x += 100.0f;
+	//if (sfw::getKey('A')) playerRigidbody.accel.x -= 100.0f;
+	//if (sfw::getKey('D')) playerRigidbody.accel.x += 100.0f;
 
 	if (sfw::getKey('Q')) playerRigidbody.angularVelocity += 1.0f;
 	if (sfw::getKey('E')) playerRigidbody.angularVelocity -= 1.0f;

@@ -15,6 +15,7 @@ class SpaceshipLocomation
 	float turnspeed; // rate of change for our turn
 
 	float speed; //movement speed
+	float maxspeed;
 
 public:
 	SpaceshipLocomation();

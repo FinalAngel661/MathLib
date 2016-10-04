@@ -40,6 +40,8 @@ void main()
 
 	while (sfw::stepContext())
 	{
+		float deltaTime = sfw::getDeltaTime();
+
 		/*playerTransform.debugDraw();*/
 
 		sfw::drawCircle(start.x, start.y, 12);
