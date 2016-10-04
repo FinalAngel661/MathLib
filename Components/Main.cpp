@@ -73,8 +73,17 @@ void main()
 	//	trans.debugDraw();
 	//}
 
+	vec2 start = { 200,300 }, end = { 900,800 }, mid = { 0,1100 };
+
 	while (sfw::stepContext())
 	{
+		sfw::drawCircle(start.x, start.y, 12);
+		sfw::drawCircle(mid.x, mid.y, 12);
+		sfw::drawCircle(end.x, end.y, 12);
+
+		if (sfw::getKey('S'))
+			mid.y -= sfw::getDeltaTime() * 10;
+
 		float steps = 100;
 		for (int i = 0; i < steps; ++i)
 		{
