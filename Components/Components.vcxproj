@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Main2.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="rigidbody.cpp" />
     <ClCompile Include="SpaceshipController.cpp" />
