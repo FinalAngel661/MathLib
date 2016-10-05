@@ -1,9 +1,6 @@
 #include "SpaceshipLocomotion.h"
 #include "sfwdraw.h"
 
-//using namespace sfw;
-//using sfw::getKey;
-
 SpaceshipLocomation::SpaceshipLocomation()
 {
 	thrust = 0.0f;
@@ -14,29 +11,24 @@ SpaceshipLocomation::SpaceshipLocomation()
 	maxturn = 100.0f;
 	turnspeed = 1.0f;
 
-	speed = 10.0f;
-	maxspeed = 100.0f;
+	speed = 500.0f;
+	maxspeed = 1000.0f;
 
 }
 
 
-void SpaceshipLocomation::doThrust()
+void SpaceshipLocomation::doThrust(float value)
 {
-	if (sfw::getKey('W')) thrust = 1;
+	thrust = value;
 }
 
-void SpaceshipLocomation::doTurn()
+void SpaceshipLocomation::doTurn(float value)
 {
-	if (sfw::getKey('A')) turn += 1;
-	if (sfw::getKey('D')) turn -= 1;
+	turn = value;
 }
 
 void SpaceshipLocomation::update(Rigidbody & rigidbody, float deltaTime)
 {
-	//poll for input
-	doThrust();
-	doTurn();
-
 	//apply the value to my rigidbody
 	rigidbody.accel.x = thrust * speed * deltaTime;
 	rigidbody.accel.y = turn * speed * deltaTime;
@@ -44,6 +36,8 @@ void SpaceshipLocomation::update(Rigidbody & rigidbody, float deltaTime)
 	if (magnitude(rigidbody.velocity) > maxspeed)
 	{
 		vec2 dir = normal(rigidbody.velocity);
+
+		rigidbody.velocity = dir * maxspeed;
 
 	}
 

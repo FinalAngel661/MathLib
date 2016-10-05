@@ -19,8 +19,8 @@ class SpaceshipLocomation
 
 public:
 	SpaceshipLocomation();
-	void doThrust();
-	void doTurn();
+	void doThrust(float value);
+	void doTurn(float value);
 
 	void update(Rigidbody &rigidbody, float deltaTime);
 

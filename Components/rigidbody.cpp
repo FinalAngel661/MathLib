@@ -7,6 +7,21 @@ Rigidbody::Rigidbody()
 	angularVelocity = 0.0f;
 }
 
+void Rigidbody::addForce(const vec2 & force)
+{
+	accel += force;
+}
+
+void Rigidbody::addImpulse(const vec2 & impulse)
+{
+	velocity += impulse;
+}
+
+void Rigidbody::addTorque(float torque)
+{
+	angularAccel += torque;
+}
+
 void Rigidbody::intergrate(Transform & trans, float deltaTime)
 {
 	velocity += accel * deltaTime;

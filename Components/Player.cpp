@@ -46,6 +46,9 @@ void Player::drawPlayer()
 	if (player.y < 0) player.y = H;
 	else if (player.y > H) player.y = 0;
 
+
+	
+
 	playerRigidbody.intergrate(playerTransform, 5.f);
 	playerTransform.debugDraw();
 
