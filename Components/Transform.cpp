@@ -13,7 +13,7 @@ Transform::Transform(float x, float y,
 	facing = a;
 }
 
-vec2 Transform::getDirection()
+vec2 Transform::getDirection() const
 {
 	return fromAngle(facing);
 }

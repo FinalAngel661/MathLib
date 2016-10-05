@@ -10,6 +10,7 @@ SpaceshipLocomation::SpaceshipLocomation()
 	turn = 0.0f;
 	maxturn = 100.0f;
 	turnspeed = 1.0f;
+	BreakPower = 4.0f;
 
 	speed = 500.0f;
 	maxspeed = 1000.0f;
@@ -27,22 +28,40 @@ void SpaceshipLocomation::doTurn(float value)
 	turn = value;
 }
 
-void SpaceshipLocomation::update(Rigidbody & rigidbody, float deltaTime)
+void SpaceshipLocomation::doStop(float value)
 {
-	//apply the value to my rigidbody
-	rigidbody.accel.x = thrust * speed * deltaTime;
-	rigidbody.accel.y = turn * speed * deltaTime;
+	stopAction += value;
+}
 
-	if (magnitude(rigidbody.velocity) > maxspeed)
+void SpaceshipLocomation::update(const Transform &trans, Rigidbody &rigidbody)
+{
+	rigidbody.addForce(trans.getDirection() * speed * thrust);
+	rigidbody.addTorque(turnspeed * turn);
+
+	/*thrust = 0;
+	turn = 0;
+	stopAction = 0;*/
+
+	//apply the value to my rigidbody
+	rigidbody.accel.x = thrust * speed;
+	rigidbody.accel.y = turn * speed;
+
+	float currentSpeed = magnitude(rigidbody.velocity);
+
+	rigidbody.addForce(-rigidbody.velocity);
+	rigidbody.addTorque(-rigidbody.angularVelocity * BreakPower * stopAction);
+
+	/*if (magnitude(rigidbody.velocity) > maxspeed)
 	{
-		vec2 dir = normal(rigidbody.velocity);
+		vec2 dir = normal(rigidbody.velocity * BreakPower * stopAction);
 
 		rigidbody.velocity = dir * maxspeed;
 
 	}
-
+*/
 
 	//zero out the thrust values
 	thrust = 0.0f;
 	turn = 0.0f;
+	stopAction = 0.0f;
 }
