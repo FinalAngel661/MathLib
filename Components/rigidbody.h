@@ -8,7 +8,7 @@ class Rigidbody
 public:
 	Rigidbody();
 
-	float mass;
+	float mass, drag, angulardrag;
 
 	vec2 force, impulse;
 	vec2 velocity; // represents the change in position
@@ -24,4 +24,6 @@ public:
 
 	void intergrate(Transform &trans, float deltaTime); //performs intergration
 
+
+	void debugDraw(const Transform &trans);
 };

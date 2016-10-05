@@ -1,8 +1,11 @@
 #include "rigidbody.h"
+#include "sfwdraw.h"
 
 Rigidbody::Rigidbody()
 {
 	mass = 1;
+	drag = 0.25;
+	angulardrag = 1.f;
 	force = vec2{ 0,0 };
 	impulse = vec2{ 0,0 };
 	accel = vec2{ 0,0 };
@@ -35,9 +38,23 @@ void Rigidbody::intergrate(Transform & trans, float deltaTime)
 	angularVelocity += angularAccel * deltaTime;
 	force = impulse = { 0,0 };
 
+	force = -velocity * drag;
+
 	angularAccel = torque / mass;
 	//perform euler intergration
 	//trans.position = trans.position + velocity * deltaTime;
 	trans.facing += angularVelocity * deltaTime;
 	torque = 0;
+
+	torque = -angularVelocity * angulardrag;
+}
+
+void Rigidbody::debugDraw(const Transform & trans)
+{
+	vec2 p = trans.position;
+	vec2 v = p + velocity;
+	vec2 a = accel + p;
+
+	sfw::drawLine(p.x, p.y, v.x, v.y, CYAN);
+	sfw::drawLine(p.x, p.y, a.x, a.y, MAGENTA);
 }
