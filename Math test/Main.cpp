@@ -6,6 +6,7 @@
 #include "fops.h"
 #include "fops.cpp"
 #include "Vec3.h"
+#include "mat.h"
 
 //This is the develop branch
 //jfjf
@@ -54,7 +55,24 @@ int main()
 	assert(fequals(QuadBezier(15, 40, 21, 0), 1));
 	assert(fequals(QuadBezier(15, 40, 21, 1), 2));
 
+	////////////////////////////////////////
+//////////////////////Matrix Tests
 
+	mat2 m0 = mat2{ 0,0,0,0 };
+	mat2 m1 = mat2Identity();
+
+	assert(m0 == m0);
+	assert(m1 * 2 == 2 * m1);
+	assert((m1 * 2 == mat2{ 2,0,0,2 }));
+	assert(m1 + m0 == m1);
+	assert(m1 - m1 == m0);
+	assert(m1 *-1 == -m1);
+
+	assert(m1 * m1 == m1);
+	assert((mat2{ 1,2,3,4 }) * m1 == (mat2{ 1,2,3,4 });
+
+	assert(transpose(m1) == m1);
+	assert(inverse(m1) == m1);
 
 	return 0;
 }

@@ -44,5 +44,8 @@
     <ClCompile Include="fops.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="mat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
