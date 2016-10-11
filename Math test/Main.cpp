@@ -60,6 +60,8 @@ int main()
 
 	mat2 m0 = mat2{ 0,0,0,0 };
 	mat2 m1 = mat2Identity();
+	mat2 t0 = mat2{ 4,3,2,1 };
+	vec2 v0 = vec2{ 1,0 };
 
 	assert(m0 == m0);
 	assert(m1 * 2 == 2 * m1);
@@ -69,12 +71,15 @@ int main()
 	assert(m1 *-1 == -m1);
 
 	assert(m1 * m1 == m1);
-	assert((mat2{ 1,2,3,4 }) * m1 == (mat2{ 1,2,3,4 });
+	assert((mat2{ 1,2,3,4 }) * m1 == (mat2{ 1,2,3,4 }));
+
+	assert(m1 * v0 == v0);
+	assert((t0 * v0 == vec2{ 4,2 }));
 
 	assert(transpose(m1) == m1);
 	assert(inverse(m1) == m1);
 
+	assert(t0*inverse(t0) == m1);
+
 	return 0;
 }
-
-
