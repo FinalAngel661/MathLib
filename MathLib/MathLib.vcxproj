@@ -113,6 +113,8 @@
     <ClInclude Include="fops.h" />
     <ClInclude Include="mat.h" />
     <ClInclude Include="Mat3.h" />
+    <ClInclude Include="Mat4.h" />
+    <ClInclude Include="Mat5.h" />
     <ClInclude Include="Test.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="Vec3.h" />
