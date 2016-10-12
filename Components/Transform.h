@@ -1,6 +1,7 @@
 #pragma once
 
 #include "vec2.h"
+#include "Mat3.h"
 
 class Transform
 {
@@ -8,9 +9,9 @@ public:
 	// Transform();
 	// make, create, or init functions
 	// all fill similar roles.
-	vec2  position;
-	vec2  scale;
-	float facing;
+	vec2  m_position;
+	vec2  m_scale;
+	float m_facing;
 
 	// Constructors exist to ensure that
 	// a created object has meaningful defaults
@@ -20,7 +21,10 @@ public:
 	vec2 getDirection() const ;
 	void setDirection(const vec2 &dir);
 
-	void debugDraw();
+
+	mat3 getLocalTransform() const;
+
+	void debugDraw(const mat3 &T = mat3Identity()) const;
 };
 
 // Default constructor gets called 40 times,

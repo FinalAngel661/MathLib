@@ -143,3 +143,28 @@ mat3 inverse(const mat3 & A)
 
 	return 1 / determinant(A)*transpose(retval);
 }
+
+mat3 scale(const vec2 & s)
+{
+	mat3 retval = mat3Identity();
+	retval[0][0] = w;
+	retval[1][1] = h;
+	return retval;
+}
+
+mat3 translate(const vec2 & t)
+{
+	mat3 retval = mat3Identity();
+	retval[2][0] = x;
+	retval[2][1] = y;
+	return retval;
+}
+
+mat3 rotation(const vec2 & r)
+{
+	vec2 d = fromAngle(a);
+	mat3 retval = mat3Identity();
+	retval[0].xy = d;
+	retval[1].xy = perp(d);
+	return retval;
+}

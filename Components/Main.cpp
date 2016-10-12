@@ -5,6 +5,7 @@
 #include "rigidbody.h"
 #include "SpaceshipLocomotion.h"
 #include "SpaceshipController.h"
+#include "Mat3.h"
 
 void main()
 {
@@ -23,9 +24,9 @@ void main()
 	Transform tm(400, 300);
 	Transform tq{ 400,300 };
 
-	//trans.position = vec2{ 400,300 };
-	trans.facing = deg2rad(45);
-	trans.scale = vec2{ 12,8 };
+	//trans.m_position = vec2{ 400,300 };
+	trans.m_facing = deg2rad(45);
+	trans.m_scale = vec2{ 12,8 };
 
 	vec2 basis = { 10,0 };
 	float ang_vec = 0;
@@ -40,7 +41,7 @@ void main()
 	SpaceshipLocomation playerLoco;
 	SpaceshipController playerCTRL;
 
-	playerTransform.scale = { 24,24 };
+	playerTransform.m_scale = { 24,24 };
 
 
 
@@ -90,13 +91,13 @@ void main()
 
 			sfw::drawLine(v1.x,v1.y,v2.x,v2.y);
 			sfw::drawLine(x1, y1, x2, y2);
+
+			//assert((scale(5,1)))
+
+			playerTransform.m_scale{ 24,24 };
 		}
-
 	}
-
-
-
-	trans.facing += sfw::getDeltaTime();
+	trans.m_facing += sfw::getDeltaTime();
 	trans.debugDraw();
 
 	sfw::termContext();

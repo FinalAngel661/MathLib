@@ -8,6 +8,7 @@
 #include "Vec3.h"
 #include "mat.h"
 #include "Mat3.h"
+#include "Transform.h"
 
 //This is the develop branch
 //jfjf
@@ -87,6 +88,8 @@ int main()
 	assert ((scale(5, 1) * j == vec3{ 10,5,1 }));
 	assert ((rotate(deg2rad(90)) * j == vec3{ -5,2,1 }));
 	assert ((translate(0, 3)*j == vec3{2,8,1}));
+
+	
 
 	return 0;
 }
