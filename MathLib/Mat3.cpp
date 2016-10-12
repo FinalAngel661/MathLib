@@ -119,7 +119,13 @@ mat3 operator*(const mat3 & A, const mat3 & B)
 
 mat3 operator*(const mat3 & A, const vec3 & V)
 {
-	return mat3();
+	vec3 retval;
+	mat3 At = transpose(A);
+
+	/*for(int i = 0; i < 3; ++i)*/
+
+
+	return retval;
 }
 
 float determinant(const mat3 & A)
@@ -129,5 +135,11 @@ float determinant(const mat3 & A)
 
 mat3 inverse(const mat3 & A)
 {
-	return mat3();
+	mat3 retval;
+
+	retval[0] = cross(A[1], A[2]);
+	retval[1] = cross(A[2], A[0]);
+	retval[2] = cross(A[0], A[1]);
+
+	return 1 / determinant(A)*transpose(retval);
 }

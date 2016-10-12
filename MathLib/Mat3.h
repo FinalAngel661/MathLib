@@ -30,3 +30,11 @@ mat3 operator*(const mat3 &A, const vec3 &V);
 
 float determinant(const mat3 &A);
 mat3 inverse(const mat3 &A);
+
+mat3 scale(const vec2 &s);
+mat3 translate(const vec2 &t);
+mat3 rotation(const vec2 &r);
+
+//the 1..
+//"Affine"
+//"Affine trasnsformations"
