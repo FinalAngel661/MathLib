@@ -85,11 +85,16 @@ int main()
 
 	vec2 j = { 2,5 };
 
-	//assert ((scale(5, 1) * j == vec3{ 10,5,1 }));
-	//assert ((rotate(deg2rad(90)) * j == vec3{ -5,2,1 }));
-	//assert ((translate(0, 3)*j == vec3{2,8,1}));
+	/*assert ((scale(5, 1) * j == vec3{ 10,5,1 }));
+	assert ((rotate(deg2rad(90)) * j == vec3{ -5,2,1 }));
+	assert ((translate(0, 3)*j == vec3{2,8,1}));*/
 
-	
+	//vec3 test
+	//	= rotate(deg2rad(-90)) * translate(10, 0) * rotate(deg2rad(45)) * 
+	//	translate(4, 0) * rotate(deg2rad(45)) * translate(-6, 0) * 
+	//	translate(6, 4) * vec3 { 0, 0, 1 };
+
+	//assert((test == vec3{ 2 * sqrtf(2), -6 - 2 * sqrtf(2),1 }));
 
 	return 0;
 }

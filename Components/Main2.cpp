@@ -16,13 +16,19 @@ void main2()
 		end = { 900, 800 },
 		mid = { 0, 1100 };
 
-	Transform playerTransform(200, 200);
-	playerTransform.m_scale = { 24,24 };
+	//Transform playerTransform(200, 200);
+	//playerTransform.m_scale = { 24,24 };
 
 	Rigidbody playerRigidbody;
 
 	SpaceshipController playerCtrl;
 	SpaceshipLocomotion playerLoco;
+
+	Transform playerTransform(200, 200);
+	Transform ST1(-5, -2);
+	Transform ST2(5, -2);
+
+	playerTransform.m_scale = { 22,48 };
 
 	while (sfw::stepContext())
 	{
@@ -47,6 +53,9 @@ void main2()
 		// Draw the player
 		playerTransform.debugDraw();
 		playerRigidbody.debugDraw(playerTransform);
+
+		ST1.debugDraw(playerTransform.getLocalTransform());
+		ST2.debugDraw(playerTransform.getLocalTransform());
 	}
 	sfw::termContext();
 }
