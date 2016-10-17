@@ -6,7 +6,7 @@
 #include "SpaceshipLocomotion.h"
 #include "SpaceshipController.h"
 
-void main()
+void main2()
 {
 	float SCREEN_WIDTH = 1200, SCREEN_HEIGHT = 1200;
 	sfw::initContext(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -17,7 +17,7 @@ void main()
 		mid = { 0, 1100 };
 
 	Transform playerTransform(200, 200);
-	playerTransform.scale = { 24,24 };
+	playerTransform.m_scale = { 24,24 };
 
 	Rigidbody playerRigidbody;
 
@@ -29,20 +29,20 @@ void main()
 		float deltaTime = sfw::getDeltaTime();
 
 		// Wrap the player's position within the screen bounds
-		if (playerTransform.position.x > SCREEN_WIDTH)
-			playerTransform.position.x = 0.0f;
-		else if (playerTransform.position.x < 0.0f)
-			playerTransform.position.x = SCREEN_WIDTH;
+		if (playerTransform.m_position.x > SCREEN_WIDTH)
+			playerTransform.m_position.x = 0.0f;
+		else if (playerTransform.m_position.x < 0.0f)
+			playerTransform.m_position.x = SCREEN_WIDTH;
 
-		if (playerTransform.position.y > SCREEN_HEIGHT)
-			playerTransform.position.y = 0.0f;
-		else if (playerTransform.position.y < 0.0f)
-			playerTransform.position.y = SCREEN_HEIGHT;
+		if (playerTransform.m_position.y > SCREEN_HEIGHT)
+			playerTransform.m_position.y = 0.0f;
+		else if (playerTransform.m_position.y < 0.0f)
+			playerTransform.m_position.y = SCREEN_HEIGHT;
 
 		// Apply rigidbody forces
 		playerCtrl.update(playerLoco);
 		playerLoco.update(playerTransform, playerRigidbody);
-		playerRigidbody.integrate(playerTransform, deltaTime);
+		playerRigidbody.intergrate(playerTransform, deltaTime);
 
 		// Draw the player
 		playerTransform.debugDraw();

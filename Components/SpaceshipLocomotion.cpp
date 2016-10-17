@@ -1,7 +1,7 @@
 #include "SpaceshipLocomotion.h"
 #include "sfwdraw.h"
 
-SpaceshipLocomation::SpaceshipLocomation()
+SpaceshipLocomotion::SpaceshipLocomotion()
 {
 	thrust = 0.0f;
 	maxthrust = 100.0f;
@@ -18,22 +18,22 @@ SpaceshipLocomation::SpaceshipLocomation()
 }
 
 
-void SpaceshipLocomation::doThrust(float value)
+void SpaceshipLocomotion::doThrust(float value)
 {
 	thrust = value;
 }
 
-void SpaceshipLocomation::doTurn(float value)
+void SpaceshipLocomotion::doTurn(float value)
 {
 	turn = value;
 }
 
-void SpaceshipLocomation::doStop(float value)
+void SpaceshipLocomotion::doStop(float value)
 {
 	stopAction += value;
 }
 
-void SpaceshipLocomation::update(const Transform &trans, Rigidbody &rigidbody)
+void SpaceshipLocomotion::update(const Transform &trans, Rigidbody &rigidbody)
 {
 	rigidbody.addForce(trans.getDirection() * speed * thrust);
 	rigidbody.addTorque(turnspeed * turn);

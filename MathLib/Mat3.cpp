@@ -1,4 +1,5 @@
 #include "Mat3.h"
+#include <math.h>
 
 vec3 mat3::operator[](unsigned idx) const
 {
@@ -10,52 +11,18 @@ vec3 & mat3::operator[](unsigned idx)
 	return c[idx];
 }
 
-bool operator!=(const mat3 & A, const mat3 & B)
-{
-	return !(A == B);
-}
 
-bool operator==(const mat3 & A, const mat3 & B)
-{
-	bool retval = true;
-
-	for (int i = 0; i < 3; ++i)
-		retval = retval && A[i] == B[i];
-
-	return retval;
-	return A[0] == B[0] && A[1] == B[1] && A[2] == B[2];
-}
-
-mat3 operator+(const mat3 & A, const mat3 & B)
-{
-	mat3 retval;
-
-	for (int i = 0; i < 3; i++)
-		retval[i] = A[i] - B[i];
-
-	return retval;
-}
 
 mat3 mat3Identity()
 {
-	//int a = 0;
-
-	//for (int column = 0; column < 3; ++column)
-	//{
-	//	for  (int row = 0; row < 3; row++)
-	//	{
-	//		if (column == a && row == a)
-	//		{
-	//			mat3Identity.mm[column][row] = 1;
-	//			a += 1;
-	//		}
-	//		else mat3Identity.mm[column][row] = 0;
-	//	}
-	//}
-
-	return mat3{1,0,0,0,1,0,0,0,1};
+	return mat3{ 1,0,0, 0,1,0, 0,0,1 };
 }
 
+/*
+ABC     ADG
+DEF T = BEH
+GHI		CFI
+*/
 mat3 transpose(const mat3 & A)
 {
 	mat3 retval;
@@ -67,11 +34,39 @@ mat3 transpose(const mat3 & A)
 	return retval;
 }
 
+bool operator==(const mat3 & A, const mat3 & B)
+{
+	bool retval = true;
+
+	for (int i = 0; i < 3; ++i)
+		retval = retval && A[i] == B[i];
+
+	return retval;
+
+	/*	return A[0] == B[0] &&
+	A[1] == B[1] &&
+	A[2] == B[2];*/
+}
+
+bool operator!=(const mat3 & A, const mat3 & B)
+{
+	return !(A == B);
+}
+
+mat3 operator+(const mat3 & A, const mat3 & B)
+{
+	mat3 retval;
+
+	for (int i = 0; i < 3; ++i)
+		retval[i] = A[i] + B[i];
+
+	return retval;
+}
+
 mat3 operator-(const mat3 & A, const mat3 & B)
 {
 	A + -B;
-
-
+	return A + -B;
 }
 
 mat3 operator-(const mat3 & A)
@@ -83,30 +78,35 @@ mat3 operator*(const mat3 & A, float s)
 {
 	mat3 retval;
 
-	//for(int i = 0)
+	for (int i = 0; i < 3; ++i)
+		retval[i] = A[i] * s;
 
+	return retval;
 }
 
 mat3 operator*(float s, const mat3 & A)
 {
-	return mat3();
+	return A*s;
 }
+
+
 
 mat3 operator*(const mat3 & A, const mat3 & B)
 {
+	// rows of the first X columns of the second.
 	mat3 retval;
 
-	retval.m[0] = A.m[0] * B.m[0] + A.m[3] * B.m[1] + A.m[6] * B.m[2];
-	retval.m[1] = A.m[1] * B.m[0] + A.m[4] * B.m[1] + A.m[7] * B.m[2];
-	retval.m[2] = A.m[2] * B.m[0] + A.m[5] * B.m[1] + A.m[8] * B.m[2];
+	//retval.m[0] = A.m[0] * B.m[0] + A.m[3] * B.m[1] + A.m[6] * B.m[2];
+	//retval.m[1] = A.m[1] * B.m[0] + A.m[4] * B.m[1] + A.m[7] * B.m[2];
+	//retval.m[2] = A.m[2] * B.m[0] + A.m[5] * B.m[1] + A.m[8] * B.m[2];
 
-	retval.m[0] = A.m[0] * B.m[3] + A.m[3] * B.m[4] + A.m[6] * B.m[5];
-	retval.m[1] = A.m[1] * B.m[3] + A.m[4] * B.m[4] + A.m[7] * B.m[5];
-	retval.m[2] = A.m[2] * B.m[3] + A.m[5] * B.m[4] + A.m[8] * B.m[5];
+	//retval.m[0] = A.m[0] * B.m[3] + A.m[3] * B.m[4] + A.m[6] * B.m[5];
+	//retval.m[1] = A.m[1] * B.m[3] + A.m[4] * B.m[4] + A.m[7] * B.m[5];
+	//retval.m[2] = A.m[2] * B.m[3] + A.m[5] * B.m[4] + A.m[8] * B.m[5];
 
-	retval.m[0] = A.m[0] * B.m[6] + A.m[3] * B.m[7] + A.m[6] * B.m[8];
-	retval.m[1] = A.m[1] * B.m[6] + A.m[4] * B.m[7] + A.m[7] * B.m[8];
-	retval.m[2] = A.m[2] * B.m[6] + A.m[5] * B.m[7] + A.m[8] * B.m[8];
+	//retval.m[0] = A.m[0] * B.m[6] + A.m[3] * B.m[7] + A.m[6] * B.m[8];
+	//retval.m[1] = A.m[1] * B.m[6] + A.m[4] * B.m[7] + A.m[7] * B.m[8];
+	//retval.m[2] = A.m[2] * B.m[6] + A.m[5] * B.m[7] + A.m[8] * B.m[8];
 
 	mat3 At = transpose(A);
 
@@ -117,22 +117,38 @@ mat3 operator*(const mat3 & A, const mat3 & B)
 	return retval;
 }
 
-mat3 operator*(const mat3 & A, const vec3 & V)
+vec3 operator*(const mat3 & A, const vec3 & V)
 {
 	vec3 retval;
 	mat3 At = transpose(A);
 
-	/*for(int i = 0; i < 3; ++i)*/
-
+	for (int i = 0; i < 3; ++i)
+		retval[i] = dot(At[i], V);
 
 	return retval;
 }
 
+
+/*
+Long form.
+Matrix Minors.
+Triple Cross Product.
+A * inverse(A) = Identity
+9 variables in the inverse.
+A/A = 1;
+*/
 float determinant(const mat3 & A)
 {
-	return 0.0f;
+	return dot(A[0], cross(A[1], A[2]));
 }
 
+
+// inverse by the
+// triple cross product
+
+// For working with cameras!
+// inverse(identity)*identity = identity
+// inverse(anyMatrix)*anyMatrix = identity
 mat3 inverse(const mat3 & A)
 {
 	mat3 retval;
@@ -141,30 +157,32 @@ mat3 inverse(const mat3 & A)
 	retval[1] = cross(A[2], A[0]);
 	retval[2] = cross(A[0], A[1]);
 
-	return 1 / determinant(A)*transpose(retval);
-}
-
-mat3 scale(const vec2 & s)
-{
-	mat3 retval = mat3Identity();
-	retval[0][0] = w;
-	retval[1][1] = h;
-	return retval;
+	return 1 / determinant(A) *
+		transpose(retval);
 }
 
 mat3 translate(const vec2 & t)
 {
-	mat3 retval = mat3Identity();
-	retval[2][0] = x;
-	retval[2][1] = y;
-	return retval;
+	mat3 out = mat3Identity();
+	out.mm[0][2] = t.x;
+	out.mm[1][2] = t.y;
+	return out;
 }
 
-mat3 rotation(const vec2 & r)
+
+mat3 rotate(const float &a)
 {
-	vec2 d = fromAngle(a);
-	mat3 retval = mat3Identity();
-	retval[0].xy = d;
-	retval[1].xy = perp(d);
-	return retval;
+	mat3 out = { cosf(deg2rad(a)), -sinf(deg2rad(a)),  0,
+		sinf(deg2rad(a)),  cosf(deg2rad(a)),  0,
+		0,					0,				   1 };
+
+	return out;
+}
+
+mat3 scale(const vec2 & s)
+{
+	mat3 out = mat3Identity();
+	out.mm[0][0] = s.x;
+	out.mm[1][1] = s.y;
+	return out;
 }

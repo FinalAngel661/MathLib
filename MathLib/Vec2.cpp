@@ -129,9 +129,9 @@ vec2 catRomPline(const vec2 start, const vec2 mid, const vec2 end, float alpha)
 	return vec2();
 }
 
-float & vec2::operator[](unsigned idx) const
+float vec2::operator[](unsigned idx) const
 {
-	return vec2(idx);
+	return v[idx];
 }
 
 float & vec2::operator[](unsigned idx)

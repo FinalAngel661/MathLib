@@ -43,7 +43,7 @@ void Rigidbody::intergrate(Transform & trans, float deltaTime)
 	angularAccel = torque / mass;
 	//perform euler intergration
 	//trans.position = trans.position + velocity * deltaTime;
-	trans.facing += angularVelocity * deltaTime;
+	trans.m_facing += angularVelocity * deltaTime;
 	torque = 0;
 
 	torque = -angularVelocity * angulardrag;
@@ -51,7 +51,7 @@ void Rigidbody::intergrate(Transform & trans, float deltaTime)
 
 void Rigidbody::debugDraw(const Transform & trans)
 {
-	vec2 p = trans.position;
+	vec2 p = trans.m_position;
 	vec2 v = p + velocity;
 	vec2 a = accel + p;
 

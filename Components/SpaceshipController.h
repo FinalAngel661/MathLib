@@ -11,5 +11,5 @@ public:
 		unsigned CTR_UP = 'W', unsigned CTR_DOWN = 'S',
 		unsigned CTR_BREAK = ' ');
 
-	void update(SpaceshipController &loco);
+	void update(SpaceshipLocomotion &loco);
 };

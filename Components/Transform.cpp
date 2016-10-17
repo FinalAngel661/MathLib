@@ -25,21 +25,23 @@ void Transform::setDirection(const vec2 &dir)
 
 mat3 Transform::getLocalTransform() const
 {
-	mat3 S = scale(m_scale.x, m_scale.y);
-	mat3 T = translate(m_position.x, m_position.y);
+	mat3 S = scale(vec2{ m_scale.x , m_scale.y });
+	mat3 T = translate(vec2{ m_position.x, m_position.y });
 	mat3 R = rotate(m_facing);
-	
+
 	mat3 RES = { 0,-1,0,2,0,0,4,3,1 };
 
 	//bool S*T*R == RES;
 	//bool S*R*T == RES;
-	bool T*S*R == RES;
+	bool test = T*S*R == RES;
 	//bool T*R*S == RES;
 	//bool R*S*T == RES;
 	//bool R*T*S == RES;
+
+	return T*S*R;
 }
 
-void Transform::debugDraw(const mat3 &T = mat3Identity()) const
+void Transform::debugDraw(const mat3 &T) const
 {
 	mat3 L = T * getLocalTransform();
 

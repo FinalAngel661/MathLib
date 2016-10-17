@@ -13,7 +13,7 @@ SpaceshipController::SpaceshipController(unsigned a_CTR_LEFT, unsigned a_CTR_RIG
 	CTR_BREAK = a_CTR_BREAK;
 }
 
-void SpaceshipController::update(SpaceshipController & loco)
+void SpaceshipController::update(SpaceshipLocomotion & loco)
 {
 	float hInput = 0.0f;
 	hInput -= sfw::getKey(CTR_RIGHT);

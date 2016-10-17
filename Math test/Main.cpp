@@ -4,7 +4,7 @@
 #include "Test.h"
 #include "Vec2.h"
 #include "fops.h"
-#include "fops.cpp"
+//#include "fops.cpp"
 #include "Vec3.h"
 #include "mat.h"
 #include "Mat3.h"
@@ -85,9 +85,9 @@ int main()
 
 	vec2 j = { 2,5 };
 
-	assert ((scale(5, 1) * j == vec3{ 10,5,1 }));
-	assert ((rotate(deg2rad(90)) * j == vec3{ -5,2,1 }));
-	assert ((translate(0, 3)*j == vec3{2,8,1}));
+	//assert ((scale(5, 1) * j == vec3{ 10,5,1 }));
+	//assert ((rotate(deg2rad(90)) * j == vec3{ -5,2,1 }));
+	//assert ((translate(0, 3)*j == vec3{2,8,1}));
 
 	
 

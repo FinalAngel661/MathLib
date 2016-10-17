@@ -2,9 +2,9 @@
 
 #include "rigidbody.h"
 
-class SpaceshipLocomation
+class SpaceshipLocomotion
 {
-	/*SpaceshipLocomation();*/
+	/*SpaceshipLocomotion();*/
 
 	float thrust; //forward movement
 	float maxthrust; // max forward movement
@@ -20,7 +20,7 @@ class SpaceshipLocomation
 	float maxspeed;
 
 public:
-	SpaceshipLocomation();
+	SpaceshipLocomotion();
 	void doThrust(float value);
 	void doTurn(float value);
 	void doStop(float value);

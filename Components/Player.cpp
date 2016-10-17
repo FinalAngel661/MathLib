@@ -25,7 +25,7 @@ void Player::takeDamage(int dmg)
 
 void Player::drawPlayer()
 {
-	playerTransform.scale = { 5,5 };
+	playerTransform.m_scale = { 5,5 };
 
 	//Player
 	sfw::drawCircle(player.x, player.y, 5.f);
@@ -41,7 +41,7 @@ void Player::drawPlayer()
 	player = player + playerVelocity * sfw::getDeltaTime();
 
 	//Wrap
-	if (playerTransform.position.x < W) playerTransform;
+	if (playerTransform.m_position.x < W) playerTransform;
 	else if (player.x > W) player.x = 0;
 	if (player.y < 0) player.y = H;
 	else if (player.y > H) player.y = 0;

@@ -38,7 +38,7 @@ void main()
 	Transform playerTransform(200,200);
 	Rigidbody playerRigidbody;
 
-	SpaceshipLocomation playerLoco;
+	SpaceshipLocomotion playerLoco;
 	SpaceshipController playerCTRL;
 
 	playerTransform.m_scale = { 24,24 };
@@ -50,7 +50,7 @@ void main()
 		float deltaTime = sfw::getDeltaTime();
 
 		playerCTRL.update(playerLoco);
-		playerLoco.update(playerRigidbody, deltaTime);
+		playerLoco.update(playerTransform, playerRigidbody);
 		playerRigidbody.intergrate(playerTransform, deltaTime);
 
 		/*playerTransform.debugDraw();*/
@@ -94,7 +94,7 @@ void main()
 
 			//assert((scale(5,1)))
 
-			playerTransform.m_scale{ 24,24 };
+			playerTransform.m_scale= { 24,24 };
 		}
 	}
 	trans.m_facing += sfw::getDeltaTime();

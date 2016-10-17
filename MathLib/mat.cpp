@@ -1,14 +1,14 @@
 #include "mat.h"
 #include "fops.h"
 
-vec2 mat2::operator[](unsigned idx) const
+vec2 &mat2::operator[](unsigned idx) const
 {
 	return vec2();
 }
 
 vec2 & mat2::operator[](unsigned idx)
 {
-	return m[idx];
+	return c[idx];
 }
 
 bool operator!=(const mat2 & A, const mat2 & B)
@@ -29,13 +29,13 @@ bool operator==(const mat2 & A, const mat2 & B)
 mat2 operator+(const mat2 & A, const mat2 & B)
 {
 	
-	for(int row = 0; row < 2; ++row)
-	{
-		for(int column = 0; column < 2; ++column)
-		{
-			A.mm[column][row] = 0;
-		}
-	}
+	//for(int row = 0; row < 2; ++row)
+	//{
+	//	for(int column = 0; column < 2; ++column)
+	//	{
+	//		A.mm[column][row] = 0;
+	//	}
+	//}
 	
 	return mat2{ A.m[0] + B.m[0],
 		A.m[1] + B.m[1],
@@ -56,29 +56,19 @@ mat2 mat2Identity()
 
 mat2 transpose(const mat2 &A)
 {
-	
-		for(int column = 0; column < 2; ++column)
-		{
-			for(int row = 0; row < 2; ++row) mm[column][row] 
-			= A.mm[row][column];
-		}
+	//mat2 retval;
 
-		for(int column = 0; column < 2; ++ column)
-		{
-			for(int row = 0; row < 2; ++row) mm[column][row] 
-			= A.mm[column][row];
-		}
+	//for(int column = 0; column < 2; ++column)
+	//{
+	//	for(int row = 0; row < 2; ++row)
+	//		retval.mm[column][row] = A.mm[row][column];
+	//}
 	
-	
-
-
 	// copy the diagnal
 	mat2 retval = A;
 
 	//what values here need to change?
 	// .m[1] and .m[2]
-	retval;
-
 	retval.mm[1][0] = A.mm[0][1];
 	retval.mm[0][1] = A.mm[1][0];
 
@@ -88,13 +78,13 @@ mat2 transpose(const mat2 &A)
 mat2 operator-(const mat2 & A, const mat2 & B)
 {
 	
-		for(int row = 0; row < 2; --row)
-		{
-			for(int column = 0; column < 2; --column)
-			{
-				A.mm[column][row] = 0;
-			}
-		}
+		//for(int row = 0; row < 2; --row)
+		//{
+		//	for(int column = 0; column < 2; --column)
+		//	{
+		//		A.mm[column][row] = 0;
+		//	}
+		//}
 	
 
 
@@ -111,7 +101,7 @@ mat2 operator-(const mat2 & A)
 
 mat2 operator*(const mat2 & A, float s)
 {
-	
+	/*
 	for(int column = 0; column < 2; ++column)
 	{
 		for(int row = 0; row < 2; ++row)
@@ -121,13 +111,13 @@ mat2 operator*(const mat2 & A, float s)
 				temp.mm[column][row] += A.mm[column][inner] * s.mm[inner][row];
 			}
 		}
-	}
+	}*/
 	
 
-	// mat2 retval;
-	// retval[0] = A[0] * s;
-	// retval[1] = A[1] *s;
-	//return retval;
+	 mat2 retval;
+	 retval[0] = A[0] * s;
+	 retval[1] = A[1] *s;
+	return retval;
 }
 
 mat2 operator*(float s, const mat2 & A)
@@ -137,16 +127,16 @@ mat2 operator*(float s, const mat2 & A)
 
 mat2 operator*(const mat2 & A, const mat2 & B)
 {
-	for (int column = 0; column < 2; ++column)
-	{
-		for (int row = 0; row < 2; ++row)
-		{
-			for (int inner = 0; inner < 2; ++inner)
-			{
-				temp.mm[column][row] += A.mm[column][inner] * B.mm[inner][row];
-			}
-		}
-	}
+	//for (int column = 0; column < 2; ++column)
+	//{
+	//	for (int row = 0; row < 2; ++row)
+	//	{
+	//		for (int inner = 0; inner < 2; ++inner)
+	//		{
+	//			temp.mm[column][row] += A.mm[column][inner] * B.mm[inner][row];
+	//		}
+	//	}
+	//}
 
 
 
@@ -160,7 +150,7 @@ mat2 operator*(const mat2 & A, const mat2 & B)
 	return retval;
 }
 
-mat2 operator*(const mat2 & A, const vec2 & V)
+vec2 operator*(const mat2 & A, const vec2 & V)
 {
 	mat2 At = transpose(A);
 	vec2 retval;
@@ -173,9 +163,9 @@ mat2 operator*(const mat2 & A, const vec2 & V)
 
 float determinant(const mat2 & A)
 {
-	return mm[0][0] * (mm[1][1] * mm[2][2] - mm[1][2] 
-		* mm[2][1]) - mm[0][1] * (mm[1][0] * mm[2][2] - mm[1][2]
-		* mm[2][0]) + mm[0][2] * (mm[1][0] * mm[2][1] - mm[1][1] * mm[2][0]);
+	return A.mm[0][0] * (A.mm[1][1] * A.mm[2][2] - A.mm[1][2] 
+		* A.mm[2][1]) - A.mm[0][1] * (A.mm[1][0] * A.mm[2][2] - A.mm[1][2]
+		* A.mm[2][0]) + A.mm[0][2] * (A.mm[1][0] * A.mm[2][1] - A.mm[1][1] * A.mm[2][0]);
 }
 
 mat2 inverse(const mat2 & A)

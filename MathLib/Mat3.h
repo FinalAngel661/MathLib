@@ -1,6 +1,7 @@
 #pragma once
 
 #include "vec3.h"
+#include "fops.h"
 
 union mat3
 {
@@ -26,14 +27,14 @@ mat3 operator-(const mat3 &A);
 mat3 operator*(const mat3 &A, float s);
 mat3 operator*(float s, const mat3 &A);
 mat3 operator*(const mat3 &A, const mat3 &B);
-mat3 operator*(const mat3 &A, const vec3 &V);
+vec3 operator*(const mat3 &A, const vec3 &V);
 
 float determinant(const mat3 &A);
 mat3 inverse(const mat3 &A);
 
 mat3 scale(const vec2 &s);
 mat3 translate(const vec2 &t);
-mat3 rotation(const vec2 &r);
+mat3 rotate(const float &r);
 
 //the 1..
 //"Affine"
