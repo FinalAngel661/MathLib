@@ -6,7 +6,7 @@
 #include "SpaceshipLocomotion.h"
 #include "SpaceshipController.h"
 
-void main2()
+void main()
 {
 	float SCREEN_WIDTH = 1200, SCREEN_HEIGHT = 1200;
 	sfw::initContext(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -16,19 +16,22 @@ void main2()
 		end = { 900, 800 },
 		mid = { 0, 1100 };
 
-	//Transform playerTransform(200, 200);
-	//playerTransform.m_scale = { 24,24 };
-
-	Rigidbody playerRigidbody;
-
-	SpaceshipController playerCtrl;
-	SpaceshipLocomotion playerLoco;
 
 	Transform playerTransform(200, 200);
-	Transform ST1(-5, -2);
-	Transform ST2(5, -2);
+	Transform ST1(100, 0);
+	Transform ST2(100, 0);
+	Transform ST3(100, 0);
+	Transform ST4(100, 0);
 
-	playerTransform.m_scale = { 22,48 };
+	ST1.m_parent = &playerTransform;
+	ST2.m_parent = &ST1;
+	ST3.m_parent = &ST2;
+	ST4.m_parent = &ST3;
+
+
+	Rigidbody playerRigidbody;
+	SpaceshipController playerCtrl;
+	SpaceshipLocomotion playerLoco;
 
 	while (sfw::stepContext())
 	{
@@ -54,8 +57,10 @@ void main2()
 		playerTransform.debugDraw();
 		playerRigidbody.debugDraw(playerTransform);
 
-		ST1.debugDraw(playerTransform.getLocalTransform());
-		ST2.debugDraw(playerTransform.getLocalTransform());
+		ST1.debugDraw();
+		ST2.debugDraw();
+		ST3.debugDraw();
+		ST4.debugDraw();
 	}
 	sfw::termContext();
 }

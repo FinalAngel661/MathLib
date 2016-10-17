@@ -7,7 +7,7 @@
 #include "SpaceshipController.h"
 #include "Mat3.h"
 
-void main()
+void main1()
 {
 	int H = 1200, W = 1200;
 	sfw::initContext(H,W);
