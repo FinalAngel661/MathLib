@@ -5,6 +5,8 @@
 #include "rigidbody.h"
 #include "SpaceshipLocomotion.h"
 #include "SpaceshipController.h"
+#include "PlanetaryMotor.h"
+#include "PlanetaryRenderer.h"
 
 void main()
 {
@@ -32,6 +34,32 @@ void main()
 	Rigidbody playerRigidbody;
 	SpaceshipController playerCtrl;
 	SpaceshipLocomotion playerLoco;
+
+	//Sun
+	Transform sunTransform;
+	sunTransform.m_position = vec2{ SCREEN_WIDTH / 2, SCREEN_HEIGHT };
+	Rigidbody sunRbody;
+	PlanetaryMotor sunMotor;
+	sunMotor.m_rotationSpeed = 5;
+	PlanetaryRenderer sunRenderer(YELLOW, 100);
+
+	//Planet
+	Transform planet1;
+	planet1.m_position = vec2{ 150,0 };
+	planet1.m_parent = &sunTransform;
+	Rigidbody planet1RB;
+	PlanetaryMotor planet1motor;
+	planet1motor.m_rotationSpeed = 7;
+	PlanetaryRenderer planet1renderer(GREEN,20);
+
+	//Moon
+	Transform moon;
+	moon.m_position = vec2{ 50,0 };
+	moon.m_parent = &planet1;
+	Rigidbody moon1RB;
+	PlanetaryMotor moonmotor;
+	moonmotor.m_rotationSpeed = 12;
+	PlanetaryRenderer moonRenderer(WHITE, 7);
 
 	while (sfw::stepContext())
 	{
@@ -61,6 +89,13 @@ void main()
 		ST2.debugDraw();
 		ST3.debugDraw();
 		ST4.debugDraw();
+
+		sunMotor.update(sunRbody);
+		planet1.update(planet11RB);
+		moon1motor.update(moon1RB);
+
+
+
 	}
 	sfw::termContext();
 }
