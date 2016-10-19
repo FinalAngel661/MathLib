@@ -35,31 +35,15 @@ void main()
 	SpaceshipController playerCtrl;
 	SpaceshipLocomotion playerLoco;
 
-	//Sun
 	Transform sunTransform;
-	sunTransform.m_position = vec2{ SCREEN_WIDTH / 2, SCREEN_HEIGHT };
+	sunTransform.m_position = vec2{ SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
 	Rigidbody sunRbody;
 	PlanetaryMotor sunMotor;
-	sunMotor.m_rotationSpeed = 5;
-	PlanetaryRenderer sunRenderer(YELLOW, 100);
+	sunMotor.m_rotationSpeed = 20;
 
-	//Planet
-	Transform planet1;
-	planet1.m_position = vec2{ 150,0 };
-	planet1.m_parent = &sunTransform;
-	Rigidbody planet1RB;
-	PlanetaryMotor planet1motor;
-	planet1motor.m_rotationSpeed = 7;
-	PlanetaryRenderer planet1renderer(GREEN,20);
-
-	//Moon
-	Transform moon;
-	moon.m_position = vec2{ 50,0 };
-	moon.m_parent = &planet1;
-	Rigidbody moon1RB;
-	PlanetaryMotor moonmotor;
-	moonmotor.m_rotationSpeed = 12;
-	PlanetaryRenderer moonRenderer(WHITE, 7);
+	Transform arturoPlanetTransform;
+	arturoPlanetTransform.m_position = vec2{ 100, 0 };
+	arturoPlanetTransform.m_parent = &sunTransform;
 
 	while (sfw::stepContext())
 	{
@@ -76,26 +60,26 @@ void main()
 		else if (playerTransform.m_position.y < 0.0f)
 			playerTransform.m_position.y = SCREEN_HEIGHT;
 
-		// Apply rigidbody forces
-		playerCtrl.update(playerLoco);
-		playerLoco.update(playerTransform, playerRigidbody);
-		playerRigidbody.intergrate(playerTransform, deltaTime);
+		//// Apply rigidbody forces
+		//playerCtrl.update(playerLoco);
+		//playerLoco.update(playerTransform, playerRigidbody);
+		//playerRigidbody.integrate(playerTransform, deltaTime);
+		//
+		//// Draw the player
+		//playerTransform.debugDraw();
+		//playerRigidbody.debugDraw(playerTransform);
 
-		// Draw the player
-		playerTransform.debugDraw();
-		playerRigidbody.debugDraw(playerTransform);
+		//ST1.debugDraw();
+		//ST2.debugDraw();
+		//ST3.debugDraw();
+		//ST4.debugDraw();
 
-		ST1.debugDraw();
-		ST2.debugDraw();
-		ST3.debugDraw();
-		ST4.debugDraw();
 
 		sunMotor.update(sunRbody);
-		planet1.update(planet11RB);
-		moon1motor.update(moon1RB);
+		sunRbody.intergrate(sunTransform, deltaTime);
+		sunTransform.debugDraw();
 
-
-
+		arturoPlanetTransform.debugDraw();
 	}
 	sfw::termContext();
 }
