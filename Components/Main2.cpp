@@ -8,6 +8,7 @@
 #include "PlanetaryMotor.h"
 #include "PlanetaryRenderer.h"
 
+
 void main()
 {
 	float SCREEN_WIDTH = 1200, SCREEN_HEIGHT = 1200;
@@ -19,67 +20,94 @@ void main()
 		mid = { 0, 1100 };
 
 
+
+	//Transform ST1(100, 0);
+	//Transform ST2(100, 0);
+	//Transform ST3(100, 0);
+	//Transform ST4(100, 0);
+
+	//ST1.m_parent = &playerTransform;
+	//ST2.m_parent = &ST1;
+	//ST3.m_parent = &ST2;
+	//ST4.m_parent = &ST3;
+
 	Transform playerTransform(200, 200);
-	Transform ST1(100, 0);
-	Transform ST2(100, 0);
-	Transform ST3(100, 0);
-	Transform ST4(100, 0);
-
-	ST1.m_parent = &playerTransform;
-	ST2.m_parent = &ST1;
-	ST3.m_parent = &ST2;
-	ST4.m_parent = &ST3;
-
-
 	Rigidbody playerRigidbody;
 	SpaceshipController playerCtrl;
 	SpaceshipLocomotion playerLoco;
 
+	// Sun
 	Transform sunTransform;
 	sunTransform.m_position = vec2{ SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
 	Rigidbody sunRbody;
 	PlanetaryMotor sunMotor;
-	sunMotor.m_rotationSpeed = 20;
+	sunMotor.m_rotationSpeed = 5;
+	PlanetaryRenderer sunRenderer(YELLOW, 100);
 
-	Transform arturoPlanetTransform;
-	arturoPlanetTransform.m_position = vec2{ 100, 0 };
-	arturoPlanetTransform.m_parent = &sunTransform;
+	// Planet
+	Transform plan1;
+	plan1.m_position = vec2{ 150, 0 };
+	plan1.m_parent = &sunTransform;
+	Rigidbody plan1RB;
+	PlanetaryMotor plan1motor;
+	plan1motor.m_rotationSpeed = 7;
+	PlanetaryRenderer plan1renderer(GREEN, 20);
+
+	// Moon
+	Transform moon1;
+	moon1.m_position = vec2{ 50, 0 };
+	moon1.m_parent = &plan1;
+	Rigidbody moon1RB;
+	PlanetaryMotor moon1motor;
+	moon1motor.m_rotationSpeed = 12;
+	PlanetaryRenderer moon1renderer(WHITE, 7);
+
+
+	Transform cameraTransform;
 
 	while (sfw::stepContext())
 	{
 		float deltaTime = sfw::getDeltaTime();
 
-		// Wrap the player's position within the screen bounds
-		if (playerTransform.m_position.x > SCREEN_WIDTH)
-			playerTransform.m_position.x = 0.0f;
-		else if (playerTransform.m_position.x < 0.0f)
-			playerTransform.m_position.x = SCREEN_WIDTH;
+		// Apply rigidbody forces
+		playerCtrl.update(playerLoco);
+		playerLoco.update(playerTransform, playerRigidbody);
+		playerRigidbody.intergrate(playerTransform, deltaTime);
 
-		if (playerTransform.m_position.y > SCREEN_HEIGHT)
-			playerTransform.m_position.y = 0.0f;
-		else if (playerTransform.m_position.y < 0.0f)
-			playerTransform.m_position.y = SCREEN_HEIGHT;
+		// Draw the player
 
-		//// Apply rigidbody forces
-		//playerCtrl.update(playerLoco);
-		//playerLoco.update(playerTransform, playerRigidbody);
-		//playerRigidbody.integrate(playerTransform, deltaTime);
-		//
-		//// Draw the player
-		//playerTransform.debugDraw();
-		//playerRigidbody.debugDraw(playerTransform);
-
-		//ST1.debugDraw();
-		//ST2.debugDraw();
-		//ST3.debugDraw();
-		//ST4.debugDraw();
-
-
+		// Update Logic
 		sunMotor.update(sunRbody);
-		sunRbody.intergrate(sunTransform, deltaTime);
-		sunTransform.debugDraw();
+		plan1motor.update(plan1RB);
+		moon1motor.update(moon1RB);
 
-		arturoPlanetTransform.debugDraw();
+		moon1RB.intergrate(moon1, deltaTime);
+		plan1RB.intergrate(plan1, deltaTime);
+		sunRbody.intergrate(sunTransform, deltaTime);
+
+		// Drawing
+		//sunRenderer.draw(sunTransform);
+		//plan1renderer.draw(plan1);
+		//moon1renderer.draw(moon1);
+
+		// Use a lerp to chase the player's ship
+		cameraTransform.m_position
+			= lerp(cameraTransform.m_position,
+				playerTransform.getGlobalPosition(),
+				sfw::getDeltaTime() * 10);
+
+		// translation is the position of the camera ON THE SCREEN
+		// the scale describes the zoom
+		mat3 proj = translate(600, 600) * scale(2, 2);
+		mat3 view = inverse(cameraTransform.getGlobalTransform());
+
+		mat3 camera = proj * view;
+
+		playerTransform.debugDraw(camera);
+		sunTransform.debugDraw(camera);
+		plan1.debugDraw(camera);
+		moon1.debugDraw(camera);
+		cameraTransform.debugDraw(camera);
 	}
 	sfw::termContext();
 }
