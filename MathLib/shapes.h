@@ -1,5 +1,5 @@
 #pragma once
-#include "Mat3.h"
+#include "Mat3-Copy.h"
 
 //Boundign Volumes
 //Base stete of a more complex code.
@@ -10,6 +10,9 @@ public:
 	float rad;
 };
 
+Circle operator*(const mat3 &T, const Circle &C);
+
+bool operator==(const Circle &A, const Circle &B);
 
 struct AABB {};
 struct Plane {};

@@ -40,6 +40,19 @@ int main()
 		return sqrt((x2 - x1)*(x2 - x1) + (y2 - y1)*(y2 - y1));
 	}
 
-	getchar();
+	Circle c = {0,0,5};
+
+	assert((translate(4, 0) * c == Circle{ 4,0,5 }));
+
+	assert((scale(2, 1) * c == Cirlce{ 4,0,10 }));
+	assert((scale(2, 2) * c == Cirlce{ 4,0,10 }));
+	assert((scale(1, 2) * c == Cirlce{ 4,0,10 }));
+
+	assert((scale(-1, 1) * c == Cirlce{ 4,0,5 }));
+
+	assert((rotate(45) * c == Cirlce{ 0,0,5 }));
+
+
+	//getchar();
 	return 0;
 }
