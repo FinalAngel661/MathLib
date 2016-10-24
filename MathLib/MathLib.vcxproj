@@ -110,6 +110,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="shapes.h" />
     <ClInclude Include="Test.h" />
   </ItemGroup>
   <ItemGroup>
