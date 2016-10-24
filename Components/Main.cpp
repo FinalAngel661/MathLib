@@ -73,8 +73,8 @@ void main1()
 			float t1 = i / steps;
 			float t2 = (i + 1) / steps;
 			
-			vec2 v1 = QuadBezier(start, mid, end, t1);
-			vec2 v2 = QuadBezier(start, mid, end, t2);
+			vec2 v1 = quadBezier(start, mid, end, t1);
+			vec2 v2 = quadBezier(start, mid, end, t2);
 
 			x1 *= W;
 			x2 *= H;

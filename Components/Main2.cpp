@@ -33,7 +33,7 @@ void main()
 
 	Transform playerTransform(200, 200);
 
-	playerTransform.m_scale{ 20,20 };
+	playerTransform.m_scale = { 20,20 };
 	Rigidbody playerRigidbody;
 	SpaceshipController playerCtrl;
 	SpaceshipLocomotion playerLoco;
@@ -103,7 +103,7 @@ void main()
 
 		// translation is the position of the camera ON THE SCREEN
 		// the scale describes the zoom
-		mat3 proj = translate(600, 600) * scale(2, 2);
+		mat3 proj = translate(vec2{ 600, 600 }) * scale(vec2{ 2, 2 });
 		mat3 view = inverse(cameraTransform.getGlobalTransform());
 
 		mat3 camera = proj * view;

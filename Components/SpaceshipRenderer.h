@@ -8,7 +8,7 @@ class SpaceshipRenderer
 public:
 	unsigned color;
 
-	SpaceshipRenderer SpaceshipRenderer;
+	SpaceshipRenderer();
 
 	void draw(const mat3 &T, const Transform &ship);
 };

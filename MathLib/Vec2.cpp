@@ -1,6 +1,6 @@
 #include "Vec2.h"
 #include "fops.h"
-#include "fops.cpp"
+#include <cmath>
 vec2 operator+(const vec2 & lhs, const vec2 & rhs)
 {
 	return vec2{ lhs.x + rhs.x, lhs.y + rhs.y };
@@ -112,16 +112,16 @@ vec2 lerp(const vec2 &start, const vec2 &end, float alpha)
 vec2 quadBezier(const vec2 &start, const vec2 &mid, const vec2 &end, float alpha)
 {
 	vec2 retval;
-	retval.x = quadBezier(start.x, mid.x, end.x, alpha);
-	retval.y = quadBezier(start.y, mid.y, end.y, alpha);
+	retval.x = QuadBezier(start.x, mid.x, end.x, alpha );
+	retval.y = QuadBezier(start.y, mid.y, end.y, alpha);
 	return retval;
 }
 
 vec2 catRomSpline(const vec2 & start, const vec2 & mid, const vec2 & end, float alpha)
 {
 	vec2 retval;
-	retval.x = catRomSpline(start.x, mid.x, end.x, alpha);
-	retval.y = catRomSpline(start.y, mid.y, end.y, alpha);
+	retval.x = catRomPline(start.x, mid.x, end.x, alpha);
+	retval.y = catRomPline(start.y, mid.y, end.y, alpha);
 	return retval;
 }
 

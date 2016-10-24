@@ -30,8 +30,8 @@ float distance(const Point &P1, const Point &P2);
 struct Point3D { float x, y, z; };
 float inner(const Point3D &P1, const Point3D &P2);
 
-struct Plane { Point3D abc; float d; };
-float point_plane_distance(const Plane &pl, const Point3D &pt);
+struct Plane3D { Point3D abc; float d; };
+float point_plane_distance(const Plane3D &pl, const Point3D &pt);
 
 Point3D bezier(float t, const Point3D &p1, const Point3D &p2,
 	const Point3D &p3, const Point3D &p4);

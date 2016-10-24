@@ -115,6 +115,7 @@
     <ClInclude Include="Mat3.h" />
     <ClInclude Include="Mat4.h" />
     <ClInclude Include="Mat5.h" />
+    <ClInclude Include="shapes.h" />
     <ClInclude Include="Test.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="Vec3.h" />
@@ -123,6 +124,7 @@
     <ClCompile Include="fops.cpp" />
     <ClCompile Include="mat.cpp" />
     <ClCompile Include="Mat3.cpp" />
+    <ClCompile Include="shapes.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="Vec2.cpp" />
     <ClCompile Include="Vec3.cpp" />

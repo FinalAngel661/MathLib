@@ -56,7 +56,7 @@ float inner(const Point3D &P1, const Point3D &P2)
 	return P1.x*P2.x + P1.y*P2.y + P1.z*P2.z;
 }
 
-float point_plane_distance(const Plane &pl, const Point3D &pt)
+float point_plane_distance(const Plane3D &pl, const Point3D &pt)
 {
 	return (inner(pl.abc, pt) + pl.d) /
 		sqrt(pl.abc.x * pl.abc.x
