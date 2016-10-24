@@ -110,20 +110,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="fops - Copy.h" />
-    <ClInclude Include="Mat3 - Copy.h" />
     <ClInclude Include="shapes.h" />
     <ClInclude Include="Test.h" />
-    <ClInclude Include="Vec2 - Copy.h" />
-    <ClInclude Include="Vec3 - Copy.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="fops - Copy.cpp" />
-    <ClCompile Include="Mat3 - Copy.cpp" />
     <ClCompile Include="shapes.cpp" />
     <ClCompile Include="Test.cpp" />
-    <ClCompile Include="Vec2 - Copy.cpp" />
-    <ClCompile Include="Vec3 - Copy.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
