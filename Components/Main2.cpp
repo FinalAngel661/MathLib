@@ -32,6 +32,8 @@ void main()
 	//ST4.m_parent = &ST3;
 
 	Transform playerTransform(200, 200);
+
+	playerTransform.m_scale{ 20,20 };
 	Rigidbody playerRigidbody;
 	SpaceshipController playerCtrl;
 	SpaceshipLocomotion playerLoco;
@@ -81,6 +83,7 @@ void main()
 		plan1motor.update(plan1RB);
 		moon1motor.update(moon1RB);
 
+		playerRigidbody.intergrate(playerTransform, deltaTime);
 		moon1RB.intergrate(moon1, deltaTime);
 		plan1RB.intergrate(plan1, deltaTime);
 		sunRbody.intergrate(sunTransform, deltaTime);
@@ -91,9 +94,11 @@ void main()
 		//moon1renderer.draw(moon1);
 
 		// Use a lerp to chase the player's ship
+		// totally optional.
 		cameraTransform.m_position
 			= lerp(cameraTransform.m_position,
-				playerTransform.getGlobalPosition(),
+			(playerTransform.getGlobalPosition()
+				+ sunTransform.getGlobalPosition()) / 2,
 				sfw::getDeltaTime() * 10);
 
 		// translation is the position of the camera ON THE SCREEN
@@ -108,6 +113,15 @@ void main()
 		plan1.debugDraw(camera);
 		moon1.debugDraw(camera);
 		cameraTransform.debugDraw(camera);
+
+		sunRenderer.draw(camera, sunTransform);
+		plan1renderer.draw(camera, plan1);
+		moon1renderer.draw(camera, moon1);
+
+
+		playerRigidbody.debugDraw(camera, playerTransform);
+
+
 	}
 	sfw::termContext();
 }

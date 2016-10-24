@@ -25,5 +25,5 @@ public:
 	void intergrate(Transform &trans, float deltaTime); //performs intergration
 
 
-	void debugDraw(const Transform &trans);
+	void debugDraw(const mat3& T, const Transform &trans);
 };

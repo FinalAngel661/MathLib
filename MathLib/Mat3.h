@@ -36,6 +36,8 @@ mat3 scale(const vec2 &s);
 mat3 translate(const vec2 &t);
 mat3 rotate(const float &r);
 
+//vec2 amul(const mat3 &A)
+
 //the 1..
 //"Affine"
 //"Affine trasnsformations"
