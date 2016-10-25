@@ -19,9 +19,9 @@ bool operator==(const Circle & A, const Circle & B)
 	return false;
 }
 
-AABB operator*(const mat3 & T, const AABB & B)
+AABB operator*(const mat3 & T, const AABB & A)
 {
-	return AABB();
+	return A;
 }
 
 Plane operator*(const mat3 & T, const Plane & P)
@@ -37,4 +37,14 @@ Ray operator*(const mat3 & T, const Ray & R)
 Hull operator*(const mat3 & T, const Hull & H)
 {
 	return Hull();
+}
+
+vec2 AABB::min() const
+{
+	return pos - he;
+}
+
+vec2 AABB::max() const
+{
+	return pos + he;
 }

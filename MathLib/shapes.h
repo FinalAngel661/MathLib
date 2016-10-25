@@ -14,7 +14,13 @@ Circle operator*(const mat3 &T, const Circle &C);
 
 bool operator==(const Circle &A, const Circle &B);
 
-struct AABB {};
+struct AABB 
+{
+	vec2 pos, he;
+
+	vec2 min() const;
+	vec2 max() const;
+};
 struct Plane {};
 struct Ray {};
 struct Hull {};

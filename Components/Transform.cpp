@@ -97,4 +97,7 @@ void Transform::debugDraw(const mat3 &T) const
 	drawCircle(L * Circle{ 0,0,10 }, 0x888888FF);
 
 	//sfw::drawCircle(pos.x, pos.y, 12, 12, 0x888888FF);
+
+	drawAABB(L * AABB{0,0,10,10 }, 0x888888FF);
+
 }
