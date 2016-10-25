@@ -25,6 +25,7 @@ struct Plane {};
 struct Ray {};
 struct Hull {};
 
+
 Circle operator*(const mat3 &T, const Circle &C);
 AABB operator*(const mat3 &T, const AABB &B);
 Plane operator*(const mat3 &T, const Plane &P);

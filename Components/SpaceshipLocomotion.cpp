@@ -9,7 +9,7 @@ SpaceshipLocomotion::SpaceshipLocomotion()
 
 	turn = 0.0f;
 	maxturn = 100.0f;
-	turnspeed = 1.0f;
+	turnspeed = 10.0f;
 	BreakPower = 4.0f;
 
 	speed = 500.0f;

@@ -8,6 +8,8 @@
 #include "SpaceshipRenderer.h"
 #include "PlanetaryMotor.h"
 #include "PlanetaryRenderer.h"
+#include "shapes.h"
+#include "DrawShape.h"
 
 
 void main()
@@ -63,7 +65,7 @@ void main()
 	moon1.m_parent = &plan1;
 	Rigidbody moon1RB;
 	PlanetaryMotor moon1motor;
-	moon1motor.m_rotationSpeed = 12;
+	moon1motor.m_rotationSpeed = 40;
 	PlanetaryRenderer moon1renderer(WHITE, 7);
 
 
@@ -123,6 +125,8 @@ void main()
 		playerRenderer.draw(camera, playerTransform);
 
 		//playerRigidbody.debugDraw(camera, playerTransform);
+		
+		drawAABB(camera * playerTransform.getGlobalTransform() * AABB { 0, 0, 1, 2 }, RED);
 	}
 
 	sfw::termContext();

@@ -152,7 +152,7 @@ namespace sfw
 	// x1,y1,x2,y2	  : first and second position of the line.
 	// tint			  : hex color value
 	// transform	  : a 4x4 transformation matrix, applied as parent transform
-	void drawLine(float x1, float y1, float x2, float y2, unsigned tint = 0xffffffff, const float transform[16] = identity);
+	void drawLine(float x1, float y1, float x2, float y2, unsigned tint = 0xffffffff , const float transform[16] = identity);
 
     // verbose wrapper for drawLineMatrix
     // x1,y1,x2,y2	  : first and second position of the line.

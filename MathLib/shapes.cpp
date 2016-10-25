@@ -1,4 +1,5 @@
 #include "shapes.h"
+#include "Vec2.h"
 
 Circle operator*(const mat3 & T, const Circle & C)
 {
@@ -19,9 +20,34 @@ bool operator==(const Circle & A, const Circle & B)
 	return A.pos == B.pos && fequals(A.rad, B.rad);
 }
 
-AABB operator*(const mat3 & T, const AABB & A)
+AABB operator*(const mat3 & T, const AABB & box)
 {
-	return A;
+	AABB retval = box;
+
+	retval.pos = (T * vec3{ box.pos.x,box.pos.y,1 }).xy;
+
+	retval.he = (T * vec3{ box.he.x,box.he.y,0 }).xy;
+
+	vec2 tP[4];
+
+	tP[0] = T * vec3{box.min().x, box.min().y, 1};
+	tP[1] = T * vec3{box.max().x, box.max().y, 1 };
+	tP[2] = T * vec3{box.max().x, box.min().y, 1 };
+	tP[3] = T * vec3{box.min().x, box.max().y, 1 };
+
+	vec2 minv = tP[0].xy; 
+	vec2 maxv = tP[0].xy;
+
+	for (int i = 1; i < 4; ++i)
+	{
+		minv = min(minv, tP[i].xy);
+		maxv = max(maxv, tP[i].xy);
+	}
+
+	retval.pos = (minv + maxv) / 2;
+	retval.he = maxv - minv;
+
+	return retval;
 }
 
 Plane operator*(const mat3 & T, const Plane & P)
@@ -48,3 +74,14 @@ vec2 AABB::max() const
 {
 	return pos + he;
 }
+
+/*
+	STUB for AABB Trans
+
+	min : pos - he
+	max : pos + he
+
+	pos: (max+ min) /2
+	he :(max - min) / 2
+
+*/

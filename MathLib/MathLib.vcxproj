@@ -110,6 +110,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Components\sfwdraw.h" />
     <ClInclude Include="fops.h" />
     <ClInclude Include="mat.h" />
     <ClInclude Include="Mat3.h" />
