@@ -48,7 +48,7 @@ void SpaceshipLocomotion::update(const Transform &trans, Rigidbody &rigidbody)
 
 	float currentSpeed = magnitude(rigidbody.velocity);
 
-	rigidbody.addForce(-rigidbody.velocity);
+	rigidbody.addForce(-rigidbody.velocity * BreakPower * stopAction);
 	rigidbody.addTorque(-rigidbody.angularVelocity * BreakPower * stopAction);
 
 	/*if (magnitude(rigidbody.velocity) > maxspeed)

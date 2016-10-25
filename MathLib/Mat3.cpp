@@ -164,17 +164,20 @@ mat3 inverse(const mat3 & A)
 mat3 translate(const vec2 & t)
 {
 	mat3 out = mat3Identity();
-	out.mm[0][2] = t.x;
-	out.mm[1][2] = t.y;
+	out.mm[2][0] = t.x;
+	out.mm[2][1] = t.y;
 	return out;
 }
 
 
 mat3 rotate(const float &a)
 {
-	mat3 out = { cosf(deg2rad(a)), -sinf(deg2rad(a)),  0,
-		sinf(deg2rad(a)),  cosf(deg2rad(a)),  0,
-		0,					0,				   1 };
+	mat3 out =
+	{
+		cosf(deg2rad(a)),   sinf(deg2rad(a)),  0,
+		-sinf(deg2rad(a)),  cosf(deg2rad(a)),  0,
+		0,					0,				   1
+	};
 
 	return out;
 }

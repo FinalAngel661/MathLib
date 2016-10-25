@@ -12,38 +12,40 @@ Rigidbody::Rigidbody()
 	velocity = vec2{ 0,0 };
 	angularVelocity = 0.0f;
 	angularAccel = 0.0f;
+	torque = 0;
 }
 
-void Rigidbody::addForce(const vec2 & force)
+void Rigidbody::addForce(const vec2 & a_force)
 {
-	accel += force;
+	force += a_force;
 }
 
-void Rigidbody::addImpulse(const vec2 & impulse)
+void Rigidbody::addImpulse(const vec2 & a_impulse)
 {
-	velocity += impulse;
+	impulse += impulse;
 }
 
 void Rigidbody::addTorque(float a_torque)
 {
 	torque += a_torque;
-	//angularAccel += torque;
 }
 
 void Rigidbody::intergrate(Transform & trans, float deltaTime)
 {
+	// Position
 	accel = force / mass;
 	velocity += accel * deltaTime + impulse / mass;
-	/*velocity += accel * deltaTime;*/
-	angularVelocity += angularAccel * deltaTime;
+	trans.m_position += velocity * deltaTime;
 	force = impulse = { 0,0 };
 
+	// dampening force
 	force = -velocity * drag;
 
+	// Rotation
 	angularAccel = torque / mass;
-	//perform euler intergration
-	//trans.position = trans.position + velocity * deltaTime;
+	angularVelocity += angularAccel * deltaTime;
 	trans.m_facing += angularVelocity * deltaTime;
+
 	torque = 0;
 
 	torque = -angularVelocity * angulardrag;

@@ -9,9 +9,9 @@
 
 void main1()
 {
-	int H = 1200, W = 1200;
+	int H = 800, W = 800;
 	sfw::initContext(H,W);
-	Transform trans(400, 300,30,30,23);
+	
 
 	//different constructor syntaxes:
 	int j = int(4);
@@ -24,6 +24,7 @@ void main1()
 	Transform tm(400, 300);
 	Transform tq{ 400,300 };
 
+	Transform trans(200, 400, 30, 30, 23);
 	//trans.m_position = vec2{ 400,300 };
 	trans.m_facing = deg2rad(45);
 	trans.m_scale = vec2{ 12,8 };
@@ -35,7 +36,7 @@ void main1()
 
 	//playerRigidbody.velocity = vec2{ 0,0 };
 
-	Transform playerTransform(200,200);
+	Transform playerTransform(400,400);
 	Rigidbody playerRigidbody;
 
 	SpaceshipLocomotion playerLoco;

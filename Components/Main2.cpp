@@ -5,13 +5,14 @@
 #include "rigidbody.h"
 #include "SpaceshipLocomotion.h"
 #include "SpaceshipController.h"
+#include "SpaceshipRenderer.h"
 #include "PlanetaryMotor.h"
 #include "PlanetaryRenderer.h"
 
 
 void main()
 {
-	float SCREEN_WIDTH = 1200, SCREEN_HEIGHT = 1200;
+	float SCREEN_WIDTH = 800, SCREEN_HEIGHT = 800;
 	sfw::initContext(SCREEN_WIDTH, SCREEN_HEIGHT);
 	float steps = 100;
 
@@ -21,22 +22,23 @@ void main()
 
 
 
-	//Transform ST1(100, 0);
-	//Transform ST2(100, 0);
-	//Transform ST3(100, 0);
-	//Transform ST4(100, 0);
+	Transform ST1(100, 0);
+	Transform ST2(100, 0);
+	Transform ST3(100, 0);
+	Transform ST4(100, 0);
 
 	//ST1.m_parent = &playerTransform;
-	//ST2.m_parent = &ST1;
-	//ST3.m_parent = &ST2;
-	//ST4.m_parent = &ST3;
+	ST2.m_parent = &ST1;
+	ST3.m_parent = &ST2;
+	ST4.m_parent = &ST3;
 
-	Transform playerTransform(200, 200);
+	Transform playerTransform(400, 400);
 
-	playerTransform.m_scale = { 20,20 };
+	playerTransform.m_scale = { 10, 10 };
 	Rigidbody playerRigidbody;
 	SpaceshipController playerCtrl;
 	SpaceshipLocomotion playerLoco;
+	SpaceshipRenderer	playerRenderer;
 
 	// Sun
 	Transform sunTransform;
@@ -74,7 +76,6 @@ void main()
 		// Apply rigidbody forces
 		playerCtrl.update(playerLoco);
 		playerLoco.update(playerTransform, playerRigidbody);
-		playerRigidbody.intergrate(playerTransform, deltaTime);
 
 		// Draw the player
 
@@ -93,17 +94,19 @@ void main()
 		//plan1renderer.draw(plan1);
 		//moon1renderer.draw(moon1);
 
+		
+
 		// Use a lerp to chase the player's ship
 		// totally optional.
 		cameraTransform.m_position
 			= lerp(cameraTransform.m_position,
-			(playerTransform.getGlobalPosition()
-				+ sunTransform.getGlobalPosition()) / 2,
-				sfw::getDeltaTime() * 10);
+			(playerTransform.getGlobalPosition()),
+				//+ sunTransform.getGlobalPosition()) / 2,
+				1);
 
 		// translation is the position of the camera ON THE SCREEN
 		// the scale describes the zoom
-		mat3 proj = translate(vec2{ 600, 600 }) * scale(vec2{ 2, 2 });
+		mat3 proj = translate(vec2{ SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 }) * scale(vec2{ 2, 2 });
 		mat3 view = inverse(cameraTransform.getGlobalTransform());
 
 		mat3 camera = proj * view;
@@ -117,11 +120,10 @@ void main()
 		sunRenderer.draw(camera, sunTransform);
 		plan1renderer.draw(camera, plan1);
 		moon1renderer.draw(camera, moon1);
+		playerRenderer.draw(camera, playerTransform);
 
-
-		playerRigidbody.debugDraw(camera, playerTransform);
-
-
+		//playerRigidbody.debugDraw(camera, playerTransform);
 	}
+
 	sfw::termContext();
 }

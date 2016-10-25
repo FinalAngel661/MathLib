@@ -25,7 +25,7 @@ void SpaceshipController::update(SpaceshipLocomotion & loco)
 
 	float bInput = sfw::getKey(CTR_BREAK);
 
-	/*loco.stop(bInput);
-	loco.turn(hInput);
-	loco.thrust(vInput);*/
+	loco.doStop(bInput);
+	loco.doTurn(hInput);
+	loco.doThrust(vInput);
 }

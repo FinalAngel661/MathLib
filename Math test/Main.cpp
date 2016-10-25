@@ -4,6 +4,9 @@
 #include "shapes.h"
 #include "Test.h"
 
+#include "Vec2.h"
+#include "Vec3.h"
+#include "Mat4.h"
 
 //This is the develop branch
 //jfjf
@@ -41,6 +44,25 @@ int main()
 //		return sqrt((x2 - x1)*(x2 - x1) + (y2 - y1)*(y2 - y1));
 //	}
 
+	// vec2
+	// equality
+	assert((vec2{ 0,0 } == vec2{ 0,0 }));
+	assert((vec2{ 0,0 } != vec2{ 0,1 }));
+
+	// vec3
+	// equality
+	assert((vec3{ 0,0,0 } == vec3{ 0,0,0 }));
+	assert((vec3{ 0,0,0 } != vec3{ 0,0,1 }));
+
+	// matrix3
+	// equality
+	assert((mat3{ 0,0,0,0,0,0,0,0,0 } == mat3{ 0,0,0,0,0,0,0,0,0 }));
+	assert((mat3{ 0,0,0,0,0,0,0,0,0 } != mat3{ 0,0,0,0,0,0,0,0,1 }));
+
+	//assert(translate({0,0} == )
+
+	assert(fequals(lerp(0, 1, 1), 1));
+
 	int things[5];
 	things[0];
 
@@ -56,6 +78,7 @@ int main()
 
 	assert((rotate(45) * c == Circle{ 0,0,5 }));
 
+	
 
 	//getchar();
 	return 0;

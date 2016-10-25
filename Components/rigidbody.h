@@ -18,9 +18,9 @@ public:
 	float torque;
 	float angularAccel;
 
-	void addForce(const vec2 &force);
-	void addImpulse(const vec2 &impulse);
-	void addTorque(float torque);
+	void addForce(const vec2 &a_force);
+	void addImpulse(const vec2 &a_impulse);
+	void addTorque(float a_torque);
 
 	void intergrate(Transform &trans, float deltaTime); //performs intergration
 
