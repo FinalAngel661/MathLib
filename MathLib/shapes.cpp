@@ -16,7 +16,7 @@ Circle operator*(const mat3 & T, const Circle & C)
 
 bool operator==(const Circle & A, const Circle & B)
 {
-	return false;
+	return A.pos == B.pos && fequals(A.rad, B.rad);
 }
 
 AABB operator*(const mat3 & T, const AABB & A)
