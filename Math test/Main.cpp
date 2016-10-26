@@ -78,6 +78,8 @@ int main()
 
 	assert((rotate(45) * c == Circle{ 0,0,5 }));
 
+
+	//assert(collisiondetection);
 	
 
 	//getchar();
