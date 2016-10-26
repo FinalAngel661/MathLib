@@ -4,7 +4,7 @@ CollisionData1D collisionDetection1D(float Amin, float Amax, float Bmin, float B
 {
 	CollisionData1D retval;
 
-	retval.result = retval.penetrationDepth > 0;
+	retval.result = retval.penetrationDepth >= 0;
 	retval.MTV = retval.penetrationDepth * retval.collisionNormal;
 
 	return retval;
