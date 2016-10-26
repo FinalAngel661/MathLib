@@ -9,3 +9,13 @@ CollisionData1D collisionDetection1D(float Amin, float Amax, float Bmin, float B
 
 	return retval;
 }
+
+bool CollisionData1D::result() const
+{
+	return penetrationDepth >= 0;
+}
+
+float CollisionData1D::MTV() const
+{
+	return penetrationDepth * collisionNormal;
+}
