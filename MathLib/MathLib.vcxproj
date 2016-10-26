@@ -111,6 +111,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\Components\sfwdraw.h" />
+    <ClInclude Include="collision.h" />
     <ClInclude Include="fops.h" />
     <ClInclude Include="mat.h" />
     <ClInclude Include="Mat3.h" />
@@ -122,6 +123,7 @@
     <ClInclude Include="Vec3.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="collision.cpp" />
     <ClCompile Include="fops.cpp" />
     <ClCompile Include="mat.cpp" />
     <ClCompile Include="Mat3.cpp" />
