@@ -35,3 +35,22 @@ struct CollisionData
 };
 
 CollisionData boxCollision(const AABB &A, const AABB &B);
+
+struct CollisionDataSwept
+{
+	float entryTime, exitTime;
+	vec2 collisionNormal;
+
+	bool result() const;
+
+};
+
+CollisionDataSwept boxCollisionSwept(const AABB &A, const vec2 &dA, 
+	const AABB &B, const vec2 &dB);
+
+CollisionDataSwept boxCollision(const AABB &A, const vec2 &dA,
+	const AABB &B, const vec2 &dB);
+
+CollisionData PlaneboxCollision(const Plane &P, const AABB &B);
+
+CollisionDataSwept planeboxCollisionSwept(const Plane &P, const AABB &B, const vec2 &Bvel);

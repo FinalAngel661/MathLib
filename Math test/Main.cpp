@@ -7,6 +7,7 @@
 #include "Vec2.h"
 #include "Vec3.h"
 #include "Mat4.h"
+#include "collision.h"
 
 //This is the develop branch
 //jfjf
@@ -78,6 +79,26 @@ int main()
 
 	assert((rotate(45) * c == Circle{ 0,0,5 }));
 
+	AABB As = { 0,0,1,1 };
+	AABB Bs = { 10,0,1,1 };
+
+	assert(fequals(boxCollisionSwept(As, vec2{ 1,0 }, Bs, vec2{ -1,0 }).entryTime, 4));
+
+	assert(fequals(boxCollisionSwept(As, vec2{ 0,-1 }, Bs, vec2{ 0,1 }).entryTime, -4));
+
+	AABB Bp = { 0,0,4,4 };
+
+	Plane P1 = { 0,0,0,1 };
+	Plane P2 = { 0,-10,0,1 };
+	Plane P3 = {0,10,0,1};
+	Plane P4 = {vec2{6,6}, normal(vec2{-1,1})};
+	Plane P5 = { vec2{6,6}, normal(vec2{-1,-1})};
+
+	assert(PlaneboxCollision(P1, Bp).result());
+	assert(!PlaneboxCollision(P2, Bp).result());
+	assert(PlaneboxCollision(P3, Bp).result());
+	assert(PlaneboxCollision(P4, Bp).result());
+	assert(!PlaneboxCollision(P5, Bp).result());
 
 	//assert(collisiondetection);
 	

@@ -125,6 +125,8 @@ void main()
 		playerRenderer.draw(camera, playerTransform);
 
 		//playerRigidbody.debugDraw(camera, playerTransform);
+
+		drawPlane(camera*playerTransform.getGlobalTransform()*Plane { 0, 0, 0, 1 }, WHITE);
 		
 		drawAABB(camera * playerTransform.getGlobalTransform() * AABB { 0, 0, 1, 2 }, RED);
 	}

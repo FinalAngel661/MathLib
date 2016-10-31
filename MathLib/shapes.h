@@ -21,7 +21,11 @@ struct AABB
 	vec2 min() const;
 	vec2 max() const;
 };
-struct Plane {};
+struct Plane 
+{
+	vec2 pos, dir;
+};
+
 struct Ray {};
 struct Hull {};
 

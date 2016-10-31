@@ -46,6 +46,94 @@ CollisionData boxCollision(const AABB & A, const AABB & B)
 	return retval;
 }
 
+CollisionDataSwept boxCollisionSwept(const AABB & A, const vec2 & dA, const AABB & B, const vec2 & dB)
+{
+	CollisionDataSwept retval;
+
+	SweptCollisionData1D Xres = sweptDetection1D(A.min().x, A.max().x, dA.x, B.min().x, B.max.x, dB.x);
+
+	SweptCollisionData1D Yres = sweptDetection1D(A.min().y, A.max().y, dA.y, B.min().y, B.max.y, dB.y);
+
+	vec2 axis;
+	float handedness;
+
+	if (Yres.entryTime < Xres.entryTime && !isinf(Xres.entryTime))
+	{
+		axis = vec2{ 1,0 };
+		handedness = Xres.collisionNormal;
+
+		retval.collisionNormal = vec2{ 1,0 } *Xres.collisionNormal;
+		retval.entryTime = Xres.entryTime;
+
+	}
+	else
+	{
+		retval.collisionNormal = vec2{ 0,1 } *Yres.collisionNormal;
+		retval.entryTime = Yres.entryTime;
+	}
+
+	if (Yres.exitTime < Xres.exitTime)
+	{
+		retval.exitTime = Yres.exitTime;
+	}
+	else
+	{
+		retval.exitTime = Xres.exitTime;
+	}
+	
+	return retval;
+}
+
+CollisionDataSwept boxCollision(const AABB & A, const vec2 & dA, const AABB & B, const vec2 & dB)
+{
+	CollisionDataSwept retval;
+
+	CollisionData1D Xdis = sweptDetection1D(A.min().x, A.max().x,B.min().x, B.max().x); 
+	CollisionData1D Ydis = sweptDetection1D(A.min().x,A.max().x,B.min().x,B.max.x);
+
+	SweptCollisionData1D Xres = sweptDetection1D(A.min().x, A.max().x, dA.x, B.min().x, B.max.x, dB.x);
+
+	SweptCollisionData1D Yres = sweptDetection1D(A.min().y, A.max().y, dA.y, B.min().y, B.max.y, dB.y);
+
+	bool xSwept = (dA.x - dB.x != 0);
+	bool ySwept = (dA.y - dB.y != 0);
+
+
+	if (Yres.entryTime < Xres.entryTime || xSwept && !ySwept)
+	{
+		retval.collisionNormal = vec2{ 1,0 } *Xres.collisionNormal;
+		retval.entryTime = Xres.entryTime;
+
+	}
+	else if (ySwept)
+	{
+		retval.collisionNormal = vec2{ 0,1 } *Yres.collisionNormal;
+		retval.entryTime = Yres.entryTime;
+		retval.collides = ySwept || Ydis.result();
+	}
+
+	if (Yres.exitTime < Xres.exitTime)
+	{
+		retval.exitTime = Yres.exitTime;
+	}
+	else
+	{
+		retval.exitTime = Xres.exitTime;
+	}
+
+	return retval;
+}
+
+CollisionData PlaneboxCollision(const Plane & P, const AABB & B)
+{
+	return CollisionData();
+}
+
+CollisionDataSwept planeboxCollisionSwept(const Plane & P, const AABB & B, const vec2 & Bvel)
+{
+	return CollisionDataSwept();
+}
+
 bool CollisionData1D::result() const
 {
 	return penetrationDepth >= 0;
@@ -75,5 +163,8 @@ vec2 CollisionData::MTV() const
 
 bool SweptCollisionData1D::result() const
 {
+	
+
+
 	return entryTime >= 0 && entryTime <= 1;
 }
