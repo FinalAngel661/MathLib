@@ -100,6 +100,8 @@ int main()
 	assert(PlaneboxCollision(P4, Bp).result());
 	assert(!PlaneboxCollision(P5, Bp).result());
 
+	assert(fequals(planeboxCollisionSwept(P3, Bp, vec2{ 1,0 }).entryTime, 2.5f));
+
 	//assert(collisiondetection);
 	
 

@@ -89,7 +89,7 @@ CollisionDataSwept boxCollision(const AABB & A, const vec2 & dA, const AABB & B,
 	CollisionDataSwept retval;
 
 	CollisionData1D Xdis = sweptDetection1D(A.min().x, A.max().x,B.min().x, B.max().x); 
-	CollisionData1D Ydis = sweptDetection1D(A.min().x,A.max().x,B.min().x,B.max.x);
+	CollisionData1D Ydis = sweptDetection1D(A.min().x,A.max().x,B.min().x,B.max().x);
 
 	SweptCollisionData1D Xres = sweptDetection1D(A.min().x, A.max().x, dA.x, B.min().x, B.max.x, dB.x);
 
