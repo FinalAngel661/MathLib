@@ -33,6 +33,14 @@ vec2 AABB::max() const
 	return pos + he;
 }
 
+
+/*
+STUB for AABB Transformation
+min : pos - he
+max : pos + he
+pos : (max + min) / 2
+he  : (max - min) / 2
+*/
 AABB operator*(const mat3 & T, const AABB & box)
 {
 	AABB retval = box;
@@ -60,16 +68,52 @@ AABB operator*(const mat3 & T, const AABB & box)
 	return retval;
 }
 
+/*
+[rs rs tx][x]
+[rs rs ty][y] = rs*x + rs*y + tx*0
+[ 0  0  1][0]
+*/
 Plane operator*(const mat3 & T, const Plane & P)
 {
 	Plane retval;
-	retval.pos = (T * vec3{ P.pos.x,P.pos.y,1 }).xy;
-	retval.dir = normal(T * vec3{ P.dir.x,P.dir.y,0 }).xy;
+
+	retval.pos =
+		(T * vec3{ P.pos.x, P.pos.y, 1 }).xy;
+
+	retval.dir =
+		normal(T * vec3{ P.dir.x, P.dir.y, 0 }).xy;
 
 	return retval;
 }
+
 
 bool operator==(const Plane & A, const Plane & B)
 {
 	return A.pos == B.pos && A.dir == B.dir;
 }
+
+
+
+
+
+
+
+
+
+/*
+vec2 t[4];
+t[0] = (T * vec3{ box.min().x, box.max().y, 1 }).xy;
+t[1] = (T * vec3{ box.max().x, box.max().y, 1 }).xy;
+t[2] = (T * vec3{ box.max().x, box.min().y, 1 }).xy;
+t[3] = (T * vec3{ box.min().x, box.min().y, 1 }).xy;
+vec2 min = t[0], max = t[0];
+for (int i = 1; i < 4; ++i)
+{
+min.x = t[i].x < min.x ? t[i].x : min.x;
+min.y = t[i].y < min.y ? t[i].y : min.y;
+max.x = t[i].x > max.x ? t[i].x : max.x;
+max.y = t[i].y > max.y ? t[i].y : max.y;
+}
+retval.he = (max - min) / 2;
+retval.pos = (max + min) / 2;
+*/
