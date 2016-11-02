@@ -1,6 +1,7 @@
 #pragma once
 #include "Vec2.h"
 #include "shapes.h"
+
 struct CollisionData1D
 {
 	float penetrationDepth; // how much overlap

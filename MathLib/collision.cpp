@@ -1,5 +1,6 @@
 #include "collision.h"
 #include <cmath>
+
 CollisionData1D collisionDetection1D(float Amin, float Amax,
 	float Bmin, float Bmax)
 {
@@ -138,7 +139,7 @@ CollisionData planeBoxCollision(const Plane & P,
 	return retval;
 }
 
-CollisionData planeBoxCollisionSwept(const Plane & P, const AABB & B, const vec2 & Bvel)
+CollisionDataSwept planeBoxCollisionSwept(const Plane & P, const AABB & B, const vec2 & Bvel)
 {
 	CollisionDataSwept retval;
 
@@ -156,6 +157,8 @@ CollisionData planeBoxCollisionSwept(const Plane & P, const AABB & B, const vec2
 
 	retval.entryTime = (pBmin - pPmax) / (pPvel - pBvel);
 	retval.exitTime = (pBmax - pPmax) / (pPvel - pBvel);
+
+	return retval;
 }
 
 
