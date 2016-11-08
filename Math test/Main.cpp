@@ -256,6 +256,22 @@ int main()
 	assert(planeBoxCollision(P3, Bp).result());
 	assert(planeBoxCollision(P4, Bp).result());
 	assert(!planeBoxCollision(P5, Bp).result()); // doesn't overlap
+
+	vec2 verts[] = { {0,1},{1,1},{1,0},{0,0} };
+
+	Hull myHull(verts, 4);
+
+	assert((myHull.normals[0] == vec2{ 0,1}));
+	assert((myHull.normals[0] == vec2{ 1,0}));
+	assert((myHull.normals[0] == vec2{ 0,-1}));
+	assert((myHull.normals[0] == vec2{-1,0}));
+
+	////Hull tHull = translate(1, 0) * myHull;
+
+	//assert((myHull.vertices[0] == vec2{ 0,1 }));
+	//assert((myHull.vertices[0] == vec2{ 1,1 }));
+	//assert((myHull.vertices[0] == vec2{ 1,0 }));
+	//assert((myHull.vertices[0] == vec2{ 0,0 }));
 }
 
 /*
