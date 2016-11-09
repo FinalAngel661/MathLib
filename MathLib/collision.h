@@ -58,7 +58,40 @@ CollisionData planeBoxCollision(const Plane &P,
 
 
 // You also project the velocity.
-CollisionDataSwept planeBoxCollisionSwept
-(const Plane &P, const AABB &B, const vec2 &Bvel);
 
+CollisionDataSwept planeBoxCollisionSwept(const Plane & P, const vec2 &Pvel,
+	const AABB & B, const vec2 & Bvel);
+
+
+
+
+/*
+For each axis defined by the surface normals of the hulls:
+find the minimum and maximum extents for those shapes
+do this by projecting each point and finding the smallest and largest
+Perform 1D SAT along that axis using the extents
+The smallest penetration depth represents the final result.
+*/
 CollisionData HullCollision(const Hull &A, const Hull &B);
+
+/*
+The most normal of axes you'll deal with is 32.
+*/
+
+/*
+bestResult.penetrationDepth = -INFINITY
+for each axis of A:
+for A, loop to project points and finding min/max (similar to plane vs box)
+for B, loop to project points and finding min/max
+
+currentResult = 1DSAT(amin, amax, bmin, bmax)
+
+if(currentResult.penetrationDepth < bestResult.penetrationDepth)
+bestResult = currentResult;
+for each axis of B:
+for A, loop to project points and finding min/max
+for B, loop to project points and finding min/max
+currentResult = 1DSAT(amin, amax, bmin, bmax)
+if(currentResult.penetrationDepth < bestResult.penetrationDepth)
+bestResult = currentResult;
+*/

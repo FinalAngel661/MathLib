@@ -1,12 +1,15 @@
 #include <cassert>
 #include <cstdio>
 
-#include "shapes.h"
-#include "Test.h"
+#include <cmath>
+#include "vec2.h"
+#include "vec3.h"
+#include "fops.h"
 
-#include "Vec2.h"
-#include "Vec3.h"
-#include "Mat4.h"
+#include "mat.h"
+#include "Mat3.h"
+
+#include "shapes.h"
 #include "collision.h"
 
 int main()
@@ -267,7 +270,7 @@ int main()
 
 	vec2 verts[] = { { 0,1 },{ 1,1 },{ 1,0 },{ 0,0 } };
 
-	vec2 verts[] = { { -1,-1 },{ -1,1 },{ 1,0 },{ 0,0 } };
+	vec2 verts2[] = { { -1,-1 },{ -1,1 },{ 0,0 } };
 
 	Hull myHull(verts, 4);
 	Hull otherHull(verts2, 3);
@@ -286,7 +289,8 @@ int main()
 	assert((tHull.vertices[3] == vec2{ 1, 0 }));
 
 	assert(fequals(HullCollision(myHull, otherHull).penetrationDepth, 0));
-	assert(fequals(HullCollision(myHull, otherHull).penetrationDepth, -1));
+	assert(fequals(HullCollision(otherHull, tHull).penetrationDepth, -1));
+
 }
 
 /*
