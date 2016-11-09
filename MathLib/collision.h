@@ -60,3 +60,5 @@ CollisionData planeBoxCollision(const Plane &P,
 // You also project the velocity.
 CollisionDataSwept planeBoxCollisionSwept
 (const Plane &P, const AABB &B, const vec2 &Bvel);
+
+CollisionData HullCollision(const Hull &A, const Hull &B);

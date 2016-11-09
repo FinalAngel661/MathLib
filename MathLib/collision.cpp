@@ -161,6 +161,11 @@ CollisionDataSwept planeBoxCollisionSwept(const Plane & P, const AABB & B, const
 	return retval;
 }
 
+CollisionData HullCollision(const Hull & A, const Hull & B)
+{
+	return CollisionData();
+}
+
 
 
 bool CollisionData::result() const

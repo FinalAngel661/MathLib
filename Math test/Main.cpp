@@ -9,9 +9,6 @@
 #include "Mat4.h"
 #include "collision.h"
 
-//This is the develop branch
-//jfjf
-
 int main()
 {
 	assert(fequals(0, 0.000001));
@@ -257,21 +254,39 @@ int main()
 	assert(planeBoxCollision(P4, Bp).result());
 	assert(!planeBoxCollision(P5, Bp).result()); // doesn't overlap
 
-	vec2 verts[] = { {0,1},{1,1},{1,0},{0,0} };
+	Plane P6 = { 10, 0,-1,0 }; // fully overlapping
+
+							   // Note: 
+	assert(
+		fequals(
+			planeBoxCollisionSwept(P6, vec2{ 0,0 },
+				Bp, vec2{ 1,0 }).entryTime,
+			6.f));
+
+
+
+	vec2 verts[] = { { 0,1 },{ 1,1 },{ 1,0 },{ 0,0 } };
+
+	vec2 verts[] = { { -1,-1 },{ -1,1 },{ 1,0 },{ 0,0 } };
 
 	Hull myHull(verts, 4);
+	Hull otherHull(verts2, 3);
 
-	assert((myHull.normals[0] == vec2{ 0,1}));
-	assert((myHull.normals[0] == vec2{ 1,0}));
-	assert((myHull.normals[0] == vec2{ 0,-1}));
-	assert((myHull.normals[0] == vec2{-1,0}));
+	assert((myHull.normals[0] == vec2{ 0, 1 }));
+	assert((myHull.normals[1] == vec2{ 1, 0 }));
+	assert((myHull.normals[2] == vec2{ 0,-1 }));
+	assert((myHull.normals[3] == vec2{ -1,0 }));
 
-	////Hull tHull = translate(1, 0) * myHull;
 
-	//assert((myHull.vertices[0] == vec2{ 0,1 }));
-	//assert((myHull.vertices[0] == vec2{ 1,1 }));
-	//assert((myHull.vertices[0] == vec2{ 1,0 }));
-	//assert((myHull.vertices[0] == vec2{ 0,0 }));
+	Hull tHull = translate(1, 0) * myHull;
+
+	assert((tHull.vertices[0] == vec2{ 1, 1 }));
+	assert((tHull.vertices[1] == vec2{ 2, 1 }));
+	assert((tHull.vertices[2] == vec2{ 2, 0 }));
+	assert((tHull.vertices[3] == vec2{ 1, 0 }));
+
+	assert(fequals(HullCollision(myHull, otherHull).penetrationDepth, 0));
+	assert(fequals(HullCollision(myHull, otherHull).penetrationDepth, -1));
 }
 
 /*
