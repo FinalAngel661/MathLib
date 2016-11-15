@@ -7,7 +7,7 @@
 // Scale is how big/small we want things to be-- or the 'zoom' sort of.
 Camera::Camera()
 {
-	projection = translate(600, 600) * scale(2.f, 2.f);
+	projection = translate({ 600, 600 }) * scale({ 2.f, 2.f });
 }
 
 mat3 Camera::getCameraMatrix() const

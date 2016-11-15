@@ -70,8 +70,8 @@ mat3 Transform::getGlobalTransform() const
 
 mat3 Transform::getLocalTransform() const
 {
-	mat3 T = translate(m_position.x, m_position.y);
-	mat3 S = scale(m_scale.x, m_scale.y);
+	mat3 T = translate(m_position);
+	mat3 S = scale(m_scale);
 	mat3 R = rotate(m_facing);
 
 	return T * R * S;

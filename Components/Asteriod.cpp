@@ -7,7 +7,7 @@ Asteroid::Asteroid()
 
 	transform.m_scale = vec2{ 4,4 };
 	rigidbody.drag = 0.0f;
-	rigidbody.angularDrag = 0.0f;
+	rigidbody.angulardrag = 0.0f;
 	rigidbody.mass = 10;
 }
 

@@ -95,3 +95,7 @@ currentResult = 1DSAT(amin, amax, bmin, bmax)
 if(currentResult.penetrationDepth < bestResult.penetrationDepth)
 bestResult = currentResult;
 */
+
+
+
+CollisionData HullCollisionGroups(const Hull A[], unsigned asize, const Hull B[], unsigned bsize);

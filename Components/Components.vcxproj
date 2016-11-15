@@ -122,6 +122,7 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Main2.cpp" />
+    <ClCompile Include="Main3.cpp" />
     <ClCompile Include="ObjectCollision.cpp" />
     <ClCompile Include="PlanetaryMotor.cpp" />
     <ClCompile Include="PlanetaryRenderer.cpp" />

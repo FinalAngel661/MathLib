@@ -152,3 +152,14 @@ d[0] == d.x == d.v[0];
 d[1] == d.y == d.v[1];
 d[0] = 4;
 */
+
+
+vec2 project(const vec2 & I, const vec2 & N)
+{
+	return dot(I, normal(N)) * normal(N);
+}
+
+vec2 reflect(const vec2 & I, const vec2 & N)
+{
+	return I - 2 * project(I, N);
+}

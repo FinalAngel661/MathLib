@@ -14,7 +14,7 @@
 
 #include <cstdio>
 
-void main()
+void main2()
 {
 	float SCREEN_WIDTH = 1200, SCREEN_HEIGHT = 1200;
 	sfw::initContext(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -64,7 +64,7 @@ void main()
 
 		// Camera setup
 		cameraTransform.m_position = playerTransform.getGlobalPosition();
-		mat3 proj = translate(600, 600) * scale(2, 2);
+		mat3 proj = translate({ 600, 600 }) * scale({ 2, 2 });
 		mat3 view = inverse(cameraTransform.getGlobalTransform());
 		mat3 camera = proj * view;
 
