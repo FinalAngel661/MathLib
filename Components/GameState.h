@@ -3,6 +3,8 @@
 #include "PlayerShip.h"
 #include "Camera.h"
 #include "Asteriod.h"
+#include "GravBullet.h"
+#include "TractorBeam.h"
 /*
 Basic structure of an application state.
 Whether it's a menu, game, pause, victory screen;
@@ -42,6 +44,8 @@ public:
 	PlayerShip player;
 	Camera camera;
 	Asteroid asteroid[2];
+	GravBullet bullet;
+	TractorBeam tractor;
 
 	void play();				  //
 	void update(float deltaTime); // equivalent of step

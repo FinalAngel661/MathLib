@@ -14,6 +14,15 @@ void PlayerShip::update(float deltaTime, GameState &gs)
 {
 	controller.update(locomotion);
 	locomotion.update(transform, rigidbody);
+
+	if (sfw::getKey('T'))
+	{
+		//gs.tractor.isAlive = true;
+
+	}
+
+	rigidbody.addForce(vec2{ 0,-10 });
+
 	rigidbody.intergrate(transform, deltaTime);
 }
 

@@ -69,6 +69,9 @@
     <ClCompile Include="Main3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TractorBeam.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Transform.h">
@@ -114,6 +117,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ObjectCollision.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GravBullet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TractorBeam.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
