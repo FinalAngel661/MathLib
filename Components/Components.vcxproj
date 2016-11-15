@@ -115,12 +115,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Asteriod.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="DrawShape.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Main2.cpp" />
+    <ClCompile Include="ObjectCollision.cpp" />
     <ClCompile Include="PlanetaryMotor.cpp" />
     <ClCompile Include="PlanetaryRenderer.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -132,10 +134,12 @@
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Asteriod.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="DrawShape.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="ObjectCollision.h" />
     <ClInclude Include="PlanetaryMotor.h" />
     <ClInclude Include="PlanetaryRenderer.h" />
     <ClInclude Include="Player.h" />
