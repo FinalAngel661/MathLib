@@ -10,126 +10,82 @@
 #include "PlanetaryRenderer.h"
 #include "shapes.h"
 #include "DrawShape.h"
+#include "collider.h"
 
+#include <cstdio>
 
 void main()
 {
-	float SCREEN_WIDTH = 800, SCREEN_HEIGHT = 800;
+	float SCREEN_WIDTH = 1200, SCREEN_HEIGHT = 1200;
 	sfw::initContext(SCREEN_WIDTH, SCREEN_HEIGHT);
-	float steps = 100;
-
-	vec2 start = { 200, 300 },
-		end = { 900, 800 },
-		mid = { 0, 1100 };
 
 
+	Transform playerTransform(200, 200);
+	playerTransform.m_scale = vec2{ 10, 10 };
 
-	Transform ST1(100, 0);
-	Transform ST2(100, 0);
-	Transform ST3(100, 0);
-	Transform ST4(100, 0);
-
-	//ST1.m_parent = &playerTransform;
-	ST2.m_parent = &ST1;
-	ST3.m_parent = &ST2;
-	ST4.m_parent = &ST3;
-
-	Transform playerTransform(400, 400);
-
-	playerTransform.m_scale = { 10, 10 };
 	Rigidbody playerRigidbody;
 	SpaceshipController playerCtrl;
 	SpaceshipLocomotion playerLoco;
-	SpaceshipRenderer	playerRenderer;
+	SpaceshipRenderer playerRender;
 
-	// Sun
-	Transform sunTransform;
-	sunTransform.m_position = vec2{ SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
-	Rigidbody sunRbody;
-	PlanetaryMotor sunMotor;
-	sunMotor.m_rotationSpeed = 5;
-	PlanetaryRenderer sunRenderer(YELLOW, 100);
+	//////////////////////
+	//// Setup the Collider!
+	vec2 hullVrts[] = { { 0, 3 },
+	{ -2,-3 },
+	{ 2,-3 } };
+	Collider playerCollider(hullVrts, 3);
 
-	// Planet
-	Transform plan1;
-	plan1.m_position = vec2{ 150, 0 };
-	plan1.m_parent = &sunTransform;
-	Rigidbody plan1RB;
-	PlanetaryMotor plan1motor;
-	plan1motor.m_rotationSpeed = 7;
-	PlanetaryRenderer plan1renderer(GREEN, 20);
-
-	// Moon
-	Transform moon1;
-	moon1.m_position = vec2{ 50, 0 };
-	moon1.m_parent = &plan1;
-	Rigidbody moon1RB;
-	PlanetaryMotor moon1motor;
-	moon1motor.m_rotationSpeed = 40;
-	PlanetaryRenderer moon1renderer(WHITE, 7);
-
+	Transform occluderTransform(0, 0);
+	occluderTransform.m_scale = vec2{ 8,8 };
+	Collider occluderCollider(hullVrts, 3);
+	Rigidbody occluderRigidbody;			// *********************************
 
 	Transform cameraTransform;
-
 	while (sfw::stepContext())
 	{
 		float deltaTime = sfw::getDeltaTime();
 
-		// Apply rigidbody forces
+		// Logic
 		playerCtrl.update(playerLoco);
 		playerLoco.update(playerTransform, playerRigidbody);
-
-		// Draw the player
-
-		// Update Logic
-		sunMotor.update(sunRbody);
-		plan1motor.update(plan1RB);
-		moon1motor.update(moon1RB);
-
 		playerRigidbody.intergrate(playerTransform, deltaTime);
-		moon1RB.intergrate(moon1, deltaTime);
-		plan1RB.intergrate(plan1, deltaTime);
-		sunRbody.intergrate(sunTransform, deltaTime);
 
-		// Drawing
-		//sunRenderer.draw(sunTransform);
-		//plan1renderer.draw(plan1);
-		//moon1renderer.draw(moon1);
+		occluderRigidbody.intergrate(occluderTransform, deltaTime); //**************
 
-		
+																   //StaticResolution(playerTransform, playerRigidbody, playerCollider,
+																   //					occluderTransform, occluderCollider);
 
-		// Use a lerp to chase the player's ship
-		// totally optional.
-		cameraTransform.m_position
-			= lerp(cameraTransform.m_position,
-			(playerTransform.getGlobalPosition()),
-				//+ sunTransform.getGlobalPosition()) / 2,
-				1);
+																   ////*********************************************************
+		DynamicResolution(playerTransform, playerRigidbody, playerCollider,
+			occluderTransform, occluderRigidbody, occluderCollider);
 
-		// translation is the position of the camera ON THE SCREEN
-		// the scale describes the zoom
-		mat3 proj = translate(vec2{ SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 }) * scale(vec2{ 2, 2 });
+
+		//printf("%f : %f, %f\n", results.penetrationDepth, results.collisionNormal.x, results.collisionNormal.y);
+
+		// Camera setup
+		cameraTransform.m_position = playerTransform.getGlobalPosition();
+		mat3 proj = translate(600, 600) * scale(2, 2);
 		mat3 view = inverse(cameraTransform.getGlobalTransform());
-
 		mat3 camera = proj * view;
 
+		// debug drawing stuff
+		occluderTransform.debugDraw(camera);
+		occluderCollider.DebugDraw(camera, occluderTransform);
+		occluderRigidbody.debugDraw(camera, occluderTransform);
+
 		playerTransform.debugDraw(camera);
-		sunTransform.debugDraw(camera);
-		plan1.debugDraw(camera);
-		moon1.debugDraw(camera);
-		cameraTransform.debugDraw(camera);
+		playerRigidbody.debugDraw(camera, playerTransform);
+		playerCollider.DebugDraw(camera, playerTransform);
 
-		sunRenderer.draw(camera, sunTransform);
-		plan1renderer.draw(camera, plan1);
-		moon1renderer.draw(camera, moon1);
-		playerRenderer.draw(camera, playerTransform);
 
-		//playerRigidbody.debugDraw(camera, playerTransform);
 
-		drawPlane(camera*playerTransform.getGlobalTransform()*Plane { 0, 0, 0, 1 }, WHITE);
-		
-		drawAABB(camera * playerTransform.getGlobalTransform() * AABB { 0, 0, 1, 2 }, RED);
+		/*
+		paddle1.update(deltaTime);
+		paddle2.update(deltaTime);
+		ball.update(deltaTime);
+		paddleCollision(paddle1, ball);
+		paddleCollision(paddle2, ball);
+		*/
 	}
-
 	sfw::termContext();
 }
