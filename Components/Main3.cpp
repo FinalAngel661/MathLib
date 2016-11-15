@@ -1,6 +1,6 @@
 #include "sfwdraw.h"
 #include "GameState.h"
-
+#include "constd.h"
 #include <cstdio>
 
 void main()
@@ -12,12 +12,14 @@ void main()
 
 	game.play();
 
+	
+
 	while (sfw::stepContext())
 	{
 		float dt = sfw::getDeltaTime();
 
-		game.update(dt);
 
+		game.update(dt);
 		game.draw();
 
 	}

@@ -5,6 +5,9 @@
 #include "Asteriod.h"
 #include "GravBullet.h"
 #include "TractorBeam.h"
+#include "MainMenu.h"
+#include "Quit.h"
+#include "Splash.h"
 /*
 Basic structure of an application state.
 Whether it's a menu, game, pause, victory screen;
@@ -46,11 +49,12 @@ public:
 	Asteroid asteroid[2];
 	GravBullet bullet;
 	TractorBeam tractor;
+	Main Menu;
+	Quit quit;
+	Splash splash;
 
 	void play();				  //
 	void update(float deltaTime); // equivalent of step
 	void draw();
 
-	/// If you're courageous!
-	//void spawnBullet(position,direction)
 };

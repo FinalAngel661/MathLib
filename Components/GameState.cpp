@@ -1,5 +1,6 @@
 #include "GameState.h"
 #include "ObjectCollision.h"
+#include "constd.h"
 
 /////////////////////////////
 /// Used to setup/reset values to start the game.
@@ -29,6 +30,7 @@ void GameState::update(float deltaTime)
 	for (int i = 0; i < 2; ++i)
 		asteroid[i].update(deltaTime, *this);
 
+	
 
 	for (int i = 0; i < 2; ++i)
 		PlayerAsteroidCollision(player, asteroid[i]);
