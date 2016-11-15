@@ -9,10 +9,12 @@ void GameState::play()
 void GameState::update(float deltaTime)
 {
 	player.update(deltaTime, *this);
+	camera.update(deltaTime, *this);
 }
 
 void GameState::draw()
 {
 	mat3 cam = camera.getCameraMatrix();
+
 	player.draw(cam);
 }

@@ -1,4 +1,5 @@
 #include "Camera.h"
+#include "GameState.h"
 
 Camera::Camera()
 {

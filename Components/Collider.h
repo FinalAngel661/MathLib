@@ -11,6 +11,7 @@ public:
 	AABB box;
 	Hull hull;
 
+	Collider();
 	Collider(const vec2 *verts, int size);
 	void DebugDraw(const mat3 &T, const Transform &trans);
 };
@@ -35,3 +36,4 @@ CollisionData StaticResolution(Transform &AT, Rigidbody &AR, const Collider &AC,
 CollisionData DynamicResolution(Transform &AT, Rigidbody &AR, const Collider &AC,
 	Transform &BT, Rigidbody &BR, const Collider &BC,
 	float bounciness = 1);
+

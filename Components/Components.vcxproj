@@ -124,6 +124,7 @@
     <ClCompile Include="PlanetaryMotor.cpp" />
     <ClCompile Include="PlanetaryRenderer.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerShip.cpp" />
     <ClCompile Include="rigidbody.cpp" />
     <ClCompile Include="SpaceshipController.cpp" />
     <ClCompile Include="SpaceshipLocomotion.cpp" />
