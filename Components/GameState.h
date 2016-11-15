@@ -8,6 +8,6 @@ public:
 	PlayerShip player;
 
 	void play();
-	//void
-
+	void update(float deltaTime);
+	void draw();
 };
