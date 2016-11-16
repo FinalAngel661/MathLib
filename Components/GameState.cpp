@@ -26,11 +26,12 @@ void GameState::update(float deltaTime)
 {
 	player.update(deltaTime, *this);
 	camera.update(deltaTime, *this);
+	Menu.update(deltaTime, *this);
+	splash.update(deltaTime, *this);
+	quit.update(deltaTime,*this);
 
 	for (int i = 0; i < 2; ++i)
 		asteroid[i].update(deltaTime, *this);
-
-	
 
 	for (int i = 0; i < 2; ++i)
 		PlayerAsteroidCollision(player, asteroid[i]);

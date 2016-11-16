@@ -12,12 +12,9 @@ void main()
 
 	game.play();
 
-	
-
 	while (sfw::stepContext())
 	{
 		float dt = sfw::getDeltaTime();
-
 
 		game.update(dt);
 		game.draw();
