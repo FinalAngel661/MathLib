@@ -44,7 +44,12 @@ void main1()
 
 	playerTransform.m_scale = { 24,24 };
 
+	Transform enemyTransform(400, 400);
+	Rigidbody enemyRigidbody;
 
+	SpaceshipLocomotion enemyLoco;
+	
+	enemyTransform.m_scale = { 24,24 };
 
 	while (sfw::stepContext())
 	{
@@ -53,6 +58,9 @@ void main1()
 		playerCTRL.update(playerLoco);
 		playerLoco.update(playerTransform, playerRigidbody);
 		playerRigidbody.intergrate(playerTransform, deltaTime);
+
+		enemyLoco.update(enemyTransform, enemyRigidbody);
+		enemyRigidbody.intergrate(enemyTransform, deltaTime);
 
 		/*playerTransform.debugDraw();*/
 

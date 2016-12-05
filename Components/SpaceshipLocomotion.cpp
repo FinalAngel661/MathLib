@@ -9,11 +9,11 @@ SpaceshipLocomotion::SpaceshipLocomotion()
 
 	turn = 0.0f;
 	maxturn = 100.0f;
-	turnspeed = 10.0f;
+	turnspeed = 90.0f;
 	BreakPower = 4.0f;
 
-	speed = 500.0f;
-	maxspeed = 1000.0f;
+	speed = 100.0f;
+	maxspeed = 500.0f;
 
 }
 
@@ -35,7 +35,7 @@ void SpaceshipLocomotion::doStop(float value)
 
 void SpaceshipLocomotion::update(const Transform &trans, Rigidbody &rigidbody)
 {
-	rigidbody.addForce(trans.getDirection() * speed * thrust);
+	rigidbody.addForce(trans.getGlobalUp() * speed * thrust);
 	rigidbody.addTorque(turnspeed * turn);
 
 	/*thrust = 0;
@@ -43,8 +43,8 @@ void SpaceshipLocomotion::update(const Transform &trans, Rigidbody &rigidbody)
 	stopAction = 0;*/
 
 	//apply the value to my rigidbody
-	rigidbody.accel.x = thrust * speed;
-	rigidbody.accel.y = turn * speed;
+	//rigidbody.accel.x = thrust * speed;
+	//rigidbody.accel.y = turn * speed;
 
 	float currentSpeed = magnitude(rigidbody.velocity);
 

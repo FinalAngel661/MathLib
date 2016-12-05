@@ -17,11 +17,11 @@ void PlayerShip::update(float deltaTime, GameState &gs)
 
 	if (sfw::getKey('T'))
 	{
-		//gs.tractor.isAlive = true;
+		gs.tractor.isAlive = true;
 
 	}
 
-	rigidbody.addForce(vec2{ 0,-10 });
+	//rigidbody.addForce(vec2{ 0,-10 });
 
 	rigidbody.intergrate(transform, deltaTime);
 }

@@ -7,18 +7,46 @@ void main()
 {
 	float SCREEN_WIDTH = 1200, SCREEN_HEIGHT = 1200;
 	sfw::initContext(SCREEN_WIDTH, SCREEN_HEIGHT);
+	unsigned font = sfw::loadTextureMap("./res/tonc_font.png", 16, 6);
 
 	GameState game;
 
-	game.play();
+	Splash Splash;
+	Splash.init(font);
+
+	Quit quit;
+	quit.init(font);
+
+	APP_STATE state = ENTERSPLASH;
 
 	while (sfw::stepContext())
 	{
 		float dt = sfw::getDeltaTime();
 
-		game.update(dt);
-		game.draw();
-
+		switch (state)
+		{
+		case ENTERSPLASH:
+			Splash.play();
+		case SPLASH:
+			Splash.step();
+			Splash.draw();
+			state = Splash.next();
+			break;
+		case ENTERGAME:
+			game.init(font);
+		case GAME:
+			game.update(dt);
+			game.draw();
+			state = game.next();
+			break;
+		case ENTERQUIT:
+			quit.play();
+		case QUIT:
+			quit.step();
+			quit.draw();
+			state = quit.next();
+			break;
+		}
 	}
 	sfw::termContext();
 }
