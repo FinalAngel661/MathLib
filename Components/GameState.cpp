@@ -41,17 +41,21 @@ void Graphics::init()
 	background = sfw::loadTextureMap("./res/Space.png");
 }
 
-void Graphics::drawBackgound()
+void Graphics::drawBackgound(const mat3 &camera)
 {
-	sfw::drawTexture(background,400,300,sfw::getTextureWidth(background),
-		sfw::getTextureHeight(background), 0, true);
+	mat3 drawMat = camera * scale({ 1000.0f,1000.0f });
+
+	sfw::drawTextureMatrix3(background, 0, WHITE, drawMat.m);
+
+	//sfw::drawTexture(background,400,300,sfw::getTextureWidth(background),
+	//	sfw::getTextureHeight(background), 0, true);
 }
 
 /////////////////////////////
 /// Used to setup/reset values to start the game.
 void GameState::play()
 {
-	player.transform.m_position = vec2{ 200,200 };
+	player.transform.m_position = vec2{ 200,-400 };
 	player.transform.m_facing = 0;
 
 	enemy.transform.m_position = vec2{ 200,400 };
@@ -75,6 +79,8 @@ void GameState::update(float deltaTime)
 	player.update(deltaTime, *this);
 	camera.update(deltaTime, *this);
 
+	//return;
+
 	for (int i = 0; i < 2; ++i)
 		asteroid[i].update(deltaTime, *this);
 
@@ -88,8 +94,9 @@ void GameState::update(float deltaTime)
 
 void GameState::draw()
 {
-	Gr.drawBackgound();
+	//Gr.drawBackgound(cam);
 	mat3 cam = camera.getCameraMatrix();
+	Gr.drawBackgound(cam);
 //	Playersprite.draw(cam);
 	player.draw(cam);
 	enemy.draw(cam);

@@ -34,6 +34,7 @@ void main()
 			break;
 		case ENTERGAME:
 			game.init(font);
+			game.play();
 		case GAME:
 			game.update(dt);
 			game.draw();

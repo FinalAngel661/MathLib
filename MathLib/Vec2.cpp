@@ -133,7 +133,7 @@ vec2 min(const vec2 & A, const vec2 & B)
 
 vec2 max(const vec2 & A, const vec2 & B)
 {
-	return vec2{ A.x < B.x ? A.x : B.x, A.y < B.y ? A.y : B.y };
+	return vec2{ A.x > B.x ? A.x : B.x, A.y > B.y ? A.y : B.y };
 }
 
 float vec2::operator[](unsigned idx) const
