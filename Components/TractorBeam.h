@@ -1,7 +1,7 @@
 #pragma once
 #include "Transform.h"
 #include "Collider.h"
-
+#include "Sprite.h"
 
 ///////////////////
 // By request:
@@ -23,6 +23,7 @@ class TractorBeam
 public:
 	Transform	transform;
 	Collider	collider;
+	Sprite	TracSprite;
 
 	bool isAlive;
 	bool oneFrame;
@@ -30,6 +31,5 @@ public:
 	TractorBeam();
 
 	void update(float deltaTime, class GameState &gs);
-
 	void draw(const mat3 &camera);
 };

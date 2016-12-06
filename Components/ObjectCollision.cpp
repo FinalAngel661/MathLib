@@ -46,3 +46,17 @@ void EnemyPlayerCollision(EnemyShip & enemy, PlayerShip & player)
 		enemy.transform.m_scale *= .9f;
 	}
 }
+
+//void TracAsteroidCollision(TractorBeam & TracBeam, Asteroid & as)
+//{
+//	CollisionData result =
+//		DynamicResolution(TracBeam.transform, TracBeam.rigidbody, TracBeam.collider,
+//			as.transform, as.rigidbody, as.collider);
+//
+//	if (result.penetrationDepth >= 0)
+//	{
+//		// Some sort of negative feedback for colliding
+//		as.transform.m_scale *= .9f;
+//	}
+//}
+

@@ -43,7 +43,7 @@ void Graphics::init()
 
 void Graphics::drawBackgound(const mat3 &camera)
 {
-	mat3 drawMat = camera * scale({ 1000.0f,1000.0f });
+	mat3 drawMat = camera * scale({ 1500.0f,1500.0f });
 
 	sfw::drawTextureMatrix3(background, 0, WHITE, drawMat.m);
 

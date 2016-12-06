@@ -1,13 +1,16 @@
 #include "TractorBeam.h"
-
+#include "sfwdraw.h"
 TractorBeam::TractorBeam()
 {
 	// shape of the tractor beam
 	vec2 hullVrts[] = { { .1f,.3f },{ -.1f,.3f },{ -4.f,6.f },{ 4.f,6.f } };
 	collider = Collider(hullVrts, 4);
 
+	TracSprite.sprite = sfw::loadTextureMap("./res/TractorBeam.png");
+	TracSprite.dims = { 5,5 };
+
 	transform.m_scale = vec2{ 100,100 };
-	isAlive = false;
+	isAlive = true;
 	oneFrame = false;
 }
 
@@ -33,5 +36,6 @@ void TractorBeam::update(float deltaTime, GameState & gs)
 void TractorBeam::draw(const mat3 & camera)
 {
 	if (!isAlive) return;
+	TracSprite.draw(camera, transform);
 	collider.DebugDraw(camera, transform);
 }
