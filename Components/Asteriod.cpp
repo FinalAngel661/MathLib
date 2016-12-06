@@ -1,9 +1,13 @@
 #include "Asteriod.h"
+#include "sfwdraw.h"
 
 Asteroid::Asteroid()
 {
 	vec2 hullVrts[] = { { -1, 0 },{ 0,1 },{ 1,0 } };
 	collider = Collider(hullVrts, 3);
+
+	asterSprite.sprite = sfw::loadTextureMap("./res/Asteroid.png");
+	asterSprite.dims = { 5,5 };
 
 	transform.m_scale = vec2{ 15,15 };
 	rigidbody.drag = 0.0f;
@@ -18,11 +22,9 @@ void Asteroid::update(float deltaTime, GameState & gs)
 
 void Asteroid::draw(const mat3 & camera)
 {
+	asterSprite.draw(camera, transform);
 	transform.debugDraw(camera);
 	collider.DebugDraw(camera, transform);
 	rigidbody.debugDraw(camera, transform);
-	//void drawTexture(unsigned handle, float x, float y, float width = 1, 
-	//	float height = 1, float angle = 0, bool centered = true, 
-	//	unsigned index = 0, unsigned int tint = WHITE,
-	//	const float transform[16] = identity);
+
 }

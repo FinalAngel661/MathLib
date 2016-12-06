@@ -94,10 +94,8 @@ void GameState::update(float deltaTime)
 
 void GameState::draw()
 {
-	//Gr.drawBackgound(cam);
 	mat3 cam = camera.getCameraMatrix();
 	Gr.drawBackgound(cam);
-//	Playersprite.draw(cam);
 	player.draw(cam);
 	enemy.draw(cam);
 	char score[64];

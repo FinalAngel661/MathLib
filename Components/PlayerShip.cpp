@@ -8,7 +8,7 @@ PlayerShip::PlayerShip()
 	collider = Collider(hullVrts, 3);
 
 	Playersprite.sprite = sfw::loadTextureMap("./res/player.png");
-	Playersprite.dims = { 10,10 };
+	Playersprite.dims = { 8,8 };
 
 	transform.m_scale = vec2{ 10,10 };
 }
