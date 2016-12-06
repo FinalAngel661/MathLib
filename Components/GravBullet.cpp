@@ -23,7 +23,7 @@ void GravBullet::update(float deltaTime, GameState & gs)
 
 	if (!isAlive) return;
 
-	rigidbody.integrate(transform, deltaTime);
+	rigidbody.intergrate(transform, deltaTime);
 }
 
 void GravBullet::draw(const mat3 & camera)

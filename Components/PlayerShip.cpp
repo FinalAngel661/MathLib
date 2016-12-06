@@ -31,4 +31,5 @@ void PlayerShip::draw(const mat3 &camera)
 	transform.debugDraw(camera);
 	collider.DebugDraw(camera, transform);
 	rigidbody.debugDraw(camera, transform);
+	//Playersprite.drawplayersprite(camera, transform);
 }

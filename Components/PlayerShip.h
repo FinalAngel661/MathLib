@@ -5,6 +5,7 @@
 #include "Rigidbody.h"
 #include "SpaceshipController.h"
 #include "SpaceshipLocomotion.h"
+#include "Sprite.h"
 
 
 class PlayerShip
@@ -15,6 +16,7 @@ public:
 	Rigidbody			rigidbody;
 	SpaceshipController controller;
 	SpaceshipLocomotion locomotion;
+	Sprite				Playersprite;
 
 	PlayerShip();
 

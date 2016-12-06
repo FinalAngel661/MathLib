@@ -139,6 +139,7 @@
     <ClCompile Include="SpaceshipLocomotion.cpp" />
     <ClCompile Include="SpaceshipRenderer.cpp" />
     <ClCompile Include="Splash.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="TractorBeam.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
@@ -164,6 +165,7 @@
     <ClInclude Include="SpaceshipLocomotion.h" />
     <ClInclude Include="SpaceshipRenderer.h" />
     <ClInclude Include="Splash.h" />
+    <ClInclude Include="Sprite.h" />
     <ClInclude Include="TractorBeam.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>

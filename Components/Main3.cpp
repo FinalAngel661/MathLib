@@ -5,7 +5,7 @@
 
 void main()
 {
-	float SCREEN_WIDTH = 1200, SCREEN_HEIGHT = 1200;
+	float SCREEN_WIDTH = 1000, SCREEN_HEIGHT = 800;
 	sfw::initContext(SCREEN_WIDTH, SCREEN_HEIGHT);
 	unsigned font = sfw::loadTextureMap("./res/tonc_font.png", 16, 6);
 

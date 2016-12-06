@@ -6,6 +6,7 @@
 #include "constd.h"
 #include "TimeScore.h"
 #include <time.h>
+#include "PlayerShip.h"
 
 void GameState::init(int a_font)
 {
@@ -16,7 +17,7 @@ void GameState::init(int a_font)
 	y2 = 100;
 	counter = 0;
 	size = 400;
-	timer = 0.0f;
+	timer = 300.0f;
 	font = a_font;
 
 	Gr.init();
@@ -89,6 +90,7 @@ void GameState::draw()
 {
 	Gr.drawBackgound();
 	mat3 cam = camera.getCameraMatrix();
+//	Playersprite.draw(cam);
 	player.draw(cam);
 	enemy.draw(cam);
 	char score[64];
@@ -125,6 +127,6 @@ APP_STATE GameState::next()
 			return ENTERQUIT;
 		}
 	}
-	return ENTERGAME;
+	return GAME;
 
 }

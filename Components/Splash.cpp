@@ -28,7 +28,7 @@ void Splash::step()
 APP_STATE Splash::next()
 {
 	if (timer < 0 || sfw::getKey('P'))
-		return ENTERQUIT;
+		return ENTERGAME;
 
 	return SPLASH;
 }
