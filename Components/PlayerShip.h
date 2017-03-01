@@ -18,6 +18,8 @@ public:
 	SpaceshipLocomotion locomotion;
 	Sprite				Playersprite;
 
+	float shotTimer;
+
 	PlayerShip();
 
 	void update(float deltaTime, class GameState &gs);

@@ -4,6 +4,7 @@
 #include "fops.h"
 #include "Player.h"
 #include "rigidbody.h"
+#include "Bullet.h"
 
 float W = 400, H = 400;
 
@@ -36,6 +37,10 @@ void Player::drawPlayer()
 
 	if (sfw::getKey('Q')) playerRigidbody.angularVelocity += 1.0f;
 	if (sfw::getKey('E')) playerRigidbody.angularVelocity -= 1.0f;
+
+	//Bullet shooting
+
+	//if(sfw::getKey('')) bullet
 
 	//Intergration
 	player = player + playerVelocity * sfw::getDeltaTime();

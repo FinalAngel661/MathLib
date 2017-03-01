@@ -3,7 +3,7 @@
 
 Asteroid::Asteroid()
 {
-	vec2 hullVrts[] = { { -1, 0 },{ 0,1 },{ 1,0 } };
+	vec2 hullVrts[] = { { -3, 0 },{ 0,3 },{ 3,0 } };
 	collider = Collider(hullVrts, 3);
 
 	asterSprite.sprite = sfw::loadTextureMap("./res/Asteroid.png");

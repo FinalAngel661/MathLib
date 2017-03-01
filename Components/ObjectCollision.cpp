@@ -47,6 +47,20 @@ void EnemyPlayerCollision(EnemyShip & enemy, PlayerShip & player)
 	}
 }
 
+void BulletAsteroidCollision(Bullet & bullet, Asteroid & as)
+{
+	CollisionData result =
+		DynamicResolution(bullet.transform, bullet.rigidbody, bullet.collider,
+			as.transform, as.rigidbody, as.collider);
+
+	if (result.penetrationDepth >= 0)
+	{
+		// Some sort of negative feedback for colliding
+		bullet.toDelete = true;
+		//as.destroy:
+	}
+}
+
 //void TracAsteroidCollision(TractorBeam & TracBeam, Asteroid & as)
 //{
 //	CollisionData result =

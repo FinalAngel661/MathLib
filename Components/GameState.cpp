@@ -61,6 +61,7 @@ void GameState::play()
 	enemy.transform.m_position = vec2{ 200,400 };
 	enemy.transform.m_facing = -1;
 
+	/*
 	asteroid[0].transform.m_position = vec2{ 0,0 };
 	asteroid[0].rigidbody.addImpulse(vec2{ 100,100 });
 	asteroid[0].rigidbody.addTorque(24);
@@ -68,6 +69,7 @@ void GameState::play()
 	asteroid[1].transform.m_position = vec2{ 400,400 };
 	asteroid[1].rigidbody.addImpulse(vec2{ -100,-100 });
 	asteroid[1].rigidbody.addTorque(-24);
+	*/
 }
 
 /////////////////////////////////
@@ -81,6 +83,29 @@ void GameState::update(float deltaTime)
 
 	//return;
 
+	for (auto it = bullets.begin(); it != bullets.end();)
+	{
+		it->update(deltaTime, *this);
+		if (it->toDelete)
+		{
+			it->toDelete = false;
+			it.free();
+		}
+		else it++;
+	}
+
+	for (auto it = asteroids.begin(); it != asteroids.end(); ++it)
+	{
+		it->update(deltaTime, *this);
+		if (it->toDelete)
+		{
+			it->toDelete = false;
+			it.free();
+		}
+		else it++;
+		
+	}
+	/*
 	for (int i = 0; i < 2; ++i)
 		asteroid[i].update(deltaTime, *this);
 
@@ -90,6 +115,24 @@ void GameState::update(float deltaTime)
 	for (int i = 0; i < 2 - 1; ++i)
 		for (int j = i + 1; j < 2; ++j)
 			AsteroidCollision(asteroid[i], asteroid[j]);
+*/
+	for (auto it = bullets.begin(); it != bullets.end();++it)
+		for (int i = 0; i < 2; ++i)
+	{
+		BulletAsteroidCollision(*it, asteroids);
+	}
+
+	for (auto it = asteroids.begin(); it != asteroids.end(); ++it)
+		for (int i = 0; i < 2; ++i)
+		{
+			PlayerAsteroidCollision(player, asteroids);
+		}
+
+	for (auto it = asteroids.begin(); it != asteroids.end(); ++it)
+		for (int i = 0; i < 2; ++i)
+		{
+			AsteroidCollision(asteroids, asteroids);
+		}
 }
 
 void GameState::draw()
@@ -106,8 +149,11 @@ void GameState::draw()
 	sprintf_s(score, 64, "AI Score: %d", asteroidScore.AIScore);
 	sfw::drawString(font, score, 100, 50, 20, 20);
 
-	for (int i = 0; i < 2; ++i)
-		asteroid[i].draw(cam);
+	for (auto it = bullets.begin(); it != bullets.end(); it++)
+		it->draw(cam);
+
+	for (auto it = asteroids.begin(); it != asteroids.end(); it++)
+		it->draw(cam);
 }
 
 bool GameState::isGameOver() const
@@ -134,4 +180,30 @@ APP_STATE GameState::next()
 	}
 	return GAME;
 
+}
+
+
+void GameState::spawnBullet(vec2 pos, vec2 vel)
+{
+	Bullet b;
+
+	b.transform.m_position = pos;
+	b.rigidbody.velocity = vel;
+
+	b.toDelete = false;
+	b.lifespan = 5.0f;
+
+	bullets.push(b);
+}
+
+void GameState::spawnAsteriod(vec2 pos, vec2 vel)
+{
+	Asteroid a;
+
+	a.transform.m_position = pos;
+	a.rigidbody.velocity = vel;
+
+	a.toDelete = false;
+	
+	asteroids.push(a);
 }
