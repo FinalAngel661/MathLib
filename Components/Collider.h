@@ -1,5 +1,5 @@
 #pragma once
-#pragma once
+
 #include "shapes.h"
 #include "Transform.h"
 #include "collision.h"
