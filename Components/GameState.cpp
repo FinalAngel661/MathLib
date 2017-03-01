@@ -7,6 +7,7 @@
 #include "TimeScore.h"
 #include <time.h>
 #include "PlayerShip.h"
+#include <random>
 
 void GameState::init(int a_font)
 {
@@ -199,6 +200,8 @@ void GameState::spawnBullet(vec2 pos, vec2 vel)
 void GameState::spawnAsteriod(vec2 pos, vec2 vel)
 {
 	Asteroid a;
+
+	//random position();
 
 	a.transform.m_position = pos;
 	a.rigidbody.velocity = vel;
